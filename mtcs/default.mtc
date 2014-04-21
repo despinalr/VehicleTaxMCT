@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <com.mtcflow.model:MTC xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:com.mtcflow.model="http://com.mtcflow.mtc/1.1">
   <files/>
-  <metamodels name="Problem"/>
+  <metamodels name="Problem" URI="ProblemDomain.ecore"/>
   <metamodels name="Architecture" URI="Architecture.ecore" alias="Architecture"/>
-  <metamodels name="Platform"/>
+  <metamodels name="Platform" URI="Platform.ecore"/>
   <models name="Problem" metamodels="//@metamodels.0"/>
   <models name="Architecture" metamodels="//@metamodels.1"/>
   <models name="Platform" metamodels="//@metamodels.2"/>
