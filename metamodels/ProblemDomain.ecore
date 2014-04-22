@@ -3,21 +3,25 @@
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="problemdomain" nsURI="http://problemdomain/1.0" nsPrefix="problemdomain">
   <eClassifiers xsi:type="ecore:EClass" name="Sistema">
     <eStructuralFeatures xsi:type="ecore:EReference" name="Contactos" upperBound="-1"
-        eType="#//Contacto"/>
+        eType="#//Contacto" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="Pagos" upperBound="-1"
-        eType="#//RegistroPago"/>
+        eType="#//RegistroPago" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="InfoSistema" upperBound="-1"
         eType="#//Caracteristica"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="nombre" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Articulo">
+  <eClassifiers xsi:type="ecore:EClass" name="Articulo" eSuperTypes="#//TipoDato">
     <eStructuralFeatures xsi:type="ecore:EReference" name="Caracteristicas" upperBound="-1"
         eType="#//Caracteristica"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ArticuloOperaciones" upperBound="-1"
+        eType="#//Operacion"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Contacto">
+  <eClassifiers xsi:type="ecore:EClass" name="Contacto" eSuperTypes="#//TipoDato">
     <eStructuralFeatures xsi:type="ecore:EReference" name="Articulos" upperBound="-1"
         eType="#//Articulo"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="InfoContacto" upperBound="-1"
         eType="#//Caracteristica"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ContactoOperaciones" eType="#//Operacion"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Operando" abstract="true"/>
   <eClassifiers xsi:type="ecore:EClass" name="Vehiculo"/>
@@ -28,6 +32,8 @@
         eType="#//Contacto"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="Datos" upperBound="-1"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="InfoDePago" eType="#//Caracteristica"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="RegistroPagoOperaciones"
+        upperBound="-1" eType="#//Operacion"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Caracteristica">
     <eStructuralFeatures xsi:type="ecore:EReference" name="TipoDato" lowerBound="1"
@@ -42,4 +48,19 @@
   <eClassifiers xsi:type="ecore:EClass" name="Double" eSuperTypes="#//TipoDato"/>
   <eClassifiers xsi:type="ecore:EClass" name="Boolean" eSuperTypes="#//TipoDato"/>
   <eClassifiers xsi:type="ecore:EClass" name="DateTime" eSuperTypes="#//TipoDato"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Operacion">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="TipoEntrada" upperBound="-1"
+        eType="#//TipoDato"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="TipoDatoRetorno" lowerBound="1"
+        eType="#//TipoDato"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="nombre" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="OperacionParametros" upperBound="-1"
+        eType="#//Parametro"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Void" eSuperTypes="#//TipoDato"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Parametro">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="TipoDatoParametro" lowerBound="1"
+        eType="#//TipoDato"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="nombre" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
 </ecore:EPackage>
