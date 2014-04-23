@@ -14,9 +14,9 @@
         eType="#//Ruta"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Ruta">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="nombre" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="vistas" lowerBound="1"
         upperBound="-1" eType="#//Vista"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="nombre" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Vista">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="nombre" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -48,6 +48,8 @@
   <eClassifiers xsi:type="ecore:EClass" name="Logica">
     <eStructuralFeatures xsi:type="ecore:EReference" name="entidades" lowerBound="1"
         upperBound="-1" eType="#//Entidad"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="operaciones" lowerBound="1"
+        upperBound="-1" eType="#//Operaciones"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Entidad">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="nombre" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -61,5 +63,13 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="atributosEntrada" upperBound="-1"
         eType="#//Atributo"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="atributosSalida" eType="#//Atributo"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Operaciones">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="subOperaciones" upperBound="-1"
+        eType="#//Operaciones"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="tipoOperacion" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="entidad" lowerBound="1"
+        eType="#//Entidad"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="precedencia" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
   </eClassifiers>
 </ecore:EPackage>
