@@ -115,6 +115,14 @@
   <children xmi:type="notation:Node" xmi:id="_bX2PcMwdEeOXFqpzLJRPVg" type="1001">
     <children xmi:type="notation:Node" xmi:id="_bX2Pc8wdEeOXFqpzLJRPVg" type="4001"/>
     <children xmi:type="notation:Node" xmi:id="_bX2PdMwdEeOXFqpzLJRPVg" type="5001">
+      <children xmi:type="notation:Node" xmi:id="_DB_M8MwfEeOXFqpzLJRPVg" type="2001">
+        <element xmi:type="ecore:EAttribute" href="ProblemDomain.ecore#//Operando.1/nombre"/>
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_DB_M8cwfEeOXFqpzLJRPVg"/>
+      </children>
+      <children xmi:type="notation:Node" xmi:id="_GXAA8MwfEeOXFqpzLJRPVg" type="2001">
+        <element xmi:type="ecore:EAttribute" href="ProblemDomain.ecore#//Operando.1/valor"/>
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_GXAA8cwfEeOXFqpzLJRPVg"/>
+      </children>
       <styles xmi:type="notation:DrawerStyle" xmi:id="_bX2PdcwdEeOXFqpzLJRPVg"/>
       <styles xmi:type="notation:SortingStyle" xmi:id="_bX2PdswdEeOXFqpzLJRPVg"/>
       <styles xmi:type="notation:FilteringStyle" xmi:id="_bX2Pd8wdEeOXFqpzLJRPVg"/>
