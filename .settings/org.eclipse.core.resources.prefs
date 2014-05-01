@@ -1,9 +1,8 @@
+=\=\=\=\=\=\=
+<<<<<<<=HEAD
+>>>>>>>=dea22fb8d18d431064ce3f245312d7abd1b56710
 eclipse.preferences.version=1
-<<<<<<< HEAD
-encoding//metamodels/ProblemDomain.ecore=UTF-8
-encoding//metamodels/ProblemDomain.ecorediag=UTF-8
-=======
 encoding//metamodels/Architecture.ecorediag=UTF-8
 encoding//metamodels/Platform.ecorediag=UTF-8
->>>>>>> dea22fb8d18d431064ce3f245312d7abd1b56710
+encoding//metamodels/problem.ecorediag=UTF-8
 encoding/<project>=UTF-8

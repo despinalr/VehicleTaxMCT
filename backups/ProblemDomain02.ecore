@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="problemdomain02" nsURI="http://problemdomain02/1.0" nsPrefix="problemdomain02">
+  <eClassifiers xsi:type="ecore:EClass" name="Sistema">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="registro" eType="#//ImpuestoVehicular"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="operandos" eType="#//Operando"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="contacto" eType="#//Contribuyente"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ImpuestoVehicular">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="clave" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="atributos" upperBound="-1"
+        eType="#//Anio" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="operandosBase" upperBound="-1"
+        eType="#//Operando"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="operandosAdicionales" upperBound="-1"
+        eType="#//Operando"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="formula" eType="#//Expression"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="EReference0"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="clave" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Anio"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Operando">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="nombre" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="valor" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EFloat"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Expression"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Contribuyente">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="apellidos" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="correoElectronico"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="calidad" upperBound="-1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+</ecore:EPackage>
