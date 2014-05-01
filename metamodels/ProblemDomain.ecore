@@ -79,4 +79,8 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Valor" eSuperTypes="#//Operando.1"/>
   <eClassifiers xsi:type="ecore:EClass" name="Signo" eSuperTypes="#//Operando.1"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Suma" eSuperTypes="#//Expresion"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Resta" eSuperTypes="#//Expresion"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Multiplicacion" eSuperTypes="#//Expresion"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Division" eSuperTypes="#//Expresion"/>
 </ecore:EPackage>
