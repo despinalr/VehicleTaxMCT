@@ -93,6 +93,18 @@
             <styles xsi:type="notation:ShapeStyle" xmi:id="_8t9o8MciEeOPOPndy7CYzQ" fontName="Segoe UI" fontHeight="10"/>
             <layoutConstraint xsi:type="notation:Bounds" xmi:id="_8t9o8cciEeOPOPndy7CYzQ" x="910" y="225" width="160" height="50"/>
           </children>
+          <children type="2003" element="//@ownedViews.0/@ownedRepresentations.0/@ownedDiagramElements.15">
+            <children type="5007"/>
+            <children type="7004">
+              <children type="3010" element="//@ownedViews.0/@ownedRepresentations.0/@ownedDiagramElements.15/@ownedElements.0">
+                <layoutConstraint xsi:type="notation:Location"/>
+              </children>
+              <styles xsi:type="notation:SortingStyle"/>
+              <styles xsi:type="notation:FilteringStyle"/>
+            </children>
+            <styles xsi:type="notation:ShapeStyle" fontName="Segoe UI" fontHeight="11"/>
+            <layoutConstraint xsi:type="notation:Bounds" x="10" y="320"/>
+          </children>
           <styles xsi:type="notation:DiagramStyle" xmi:id="_GwhsMnWkEeOHkLQMMBSUFQ"/>
           <edges xmi:id="_1ZnjgMcgEeOPOPndy7CYzQ" type="4001" element="_1YFScMcgEeOPOPndy7CYzQ" source="_1Yce0McgEeOPOPndy7CYzQ" target="_1YY0cMcgEeOPOPndy7CYzQ">
             <children xmi:id="_1ZtDEMcgEeOPOPndy7CYzQ" type="6001">
@@ -204,7 +216,7 @@
           </edges>
         </data>
       </ownedAnnotationEntries>
-      <ownedDiagramElements xsi:type="viewpoint:DNode" xmi:id="_yBAo8McgEeOPOPndy7CYzQ" outgoingEdges="_MJJPcMchEeOPOPndy7CYzQ" width="9" height="11" resizeKind="NSEW">
+      <ownedDiagramElements xsi:type="viewpoint:DNode" xmi:id="_yBAo8McgEeOPOPndy7CYzQ" name="DSL" outgoingEdges="_MJJPcMchEeOPOPndy7CYzQ" width="9" height="11" resizeKind="NSEW">
         <target href="default.mtc#//@files.0"/>
         <semanticElements href="default.mtc#//@files.0"/>
         <decorations xmi:id="_yEc-gMcgEeOPOPndy7CYzQ">
@@ -436,6 +448,32 @@
           </centerLabelStyle>
         </ownedStyle>
         <actualMapping xsi:type="description:EdgeMapping" href="../../../plugin/com.mtcflow.diagram/description/MTC.odesign#//@ownedViewpoints[name='mtc']/@ownedRepresentations[name='MTC%20Diagram']/@defaultLayer/@edgeMappings[name='Input%20Model']"/>
+      </ownedDiagramElements>
+      <ownedDiagramElements xsi:type="viewpoint:DNodeList" name="Configuration">
+        <target href="default.mtc#//@configurations"/>
+        <semanticElements href="default.mtc#//@configurations"/>
+        <arrangeConstraints>KEEP_LOCATION</arrangeConstraints>
+        <arrangeConstraints>KEEP_SIZE</arrangeConstraints>
+        <arrangeConstraints>KEEP_RATIO</arrangeConstraints>
+        <ownedStyle xsi:type="viewpoint:FlatContainerStyle" labelSize="11" iconPath="/com.mtcflow.diagram/icons/configuration.png" borderSize="1" borderSizeComputationExpression="1" backgroundStyle="Liquid">
+          <labelColor/>
+          <description xsi:type="style:FlatContainerStyleDescription" href="../../../plugin/com.mtcflow.diagram/description/MTC.odesign#//@ownedViewpoints[name='mtc']/@ownedRepresentations[name='MTC%20Diagram']/@defaultLayer/@containerMappings[name='Configuration']/@style"/>
+          <borderColor/>
+          <backgroundColor red="255" green="255" blue="255"/>
+          <foregroundColor red="194" green="239" blue="255"/>
+        </ownedStyle>
+        <actualMapping href="../../../plugin/com.mtcflow.diagram/description/MTC.odesign#//@ownedViewpoints[name='mtc']/@ownedRepresentations[name='MTC%20Diagram']/@defaultLayer/@containerMappings[name='Configuration']"/>
+        <ownedElements name="output">
+          <target href="default.mtc#//@configurations/@variables.0"/>
+          <semanticElements href="default.mtc#//@configurations/@variables.0"/>
+          <ownedStyle xsi:type="viewpoint:Square" labelSize="11" labelFormat="bold_italic" iconPath="/com.mtcflow.diagram/icons/variable.png" labelAlignment="LEFT">
+            <labelColor/>
+            <description xsi:type="style:SquareDescription" href="../../../plugin/com.mtcflow.diagram/description/MTC.odesign#//@ownedViewpoints[name='mtc']/@ownedRepresentations[name='MTC%20Diagram']/@defaultLayer/@containerMappings[name='Configuration']/@subNodeMappings[name='Variable']/@style"/>
+            <borderColor/>
+            <color red="255" green="255" blue="255"/>
+          </ownedStyle>
+          <actualMapping href="../../../plugin/com.mtcflow.diagram/description/MTC.odesign#//@ownedViewpoints[name='mtc']/@ownedRepresentations[name='MTC%20Diagram']/@defaultLayer/@containerMappings[name='Configuration']/@subNodeMappings[name='Variable']"/>
+        </ownedElements>
       </ownedDiagramElements>
       <description href="../../../plugin/com.mtcflow.diagram/description/MTC.odesign#//@ownedViewpoints[name='mtc']/@ownedRepresentations[name='MTC%20Diagram']"/>
       <filterVariableHistory xmi:id="_GwhFIXWkEeOHkLQMMBSUFQ"/>

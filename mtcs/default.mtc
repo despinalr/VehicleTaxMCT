@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <com.mtcflow.model:MTC xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:com.mtcflow.model="http://com.mtcflow.mtc/1.1">
-  <files/>
+  <files name="DSL"/>
   <metamodels name="Problem" URI="ProblemDomain.ecore"/>
   <metamodels name="Architecture" URI="Architecture.ecore" alias="Architecture"/>
   <models name="Problem" metamodels="//@metamodels.0"/>
@@ -13,5 +13,8 @@
   <transformations xsi:type="com.mtcflow.model:M2TTransformation" name="SourceCode"/>
   <outputModels model="//@models.0" transformation="//@transformations.0"/>
   <outputModels model="//@models.1" transformation="//@transformations.1"/>
+  <configurations>
+    <variables name="output"/>
+  </configurations>
   <inputFiles file="//@files.0" transformation="//@transformations.0"/>
 </com.mtcflow.model:MTC>
