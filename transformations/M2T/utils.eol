@@ -1,0 +1,4 @@
+operation generateFile(fileName:String, ext:String, path:String) {
+	var t:Template:=TemplateFactory.load(fileName + '.egl');
+	t.generate(path + '/' + filename + '.' + ext);
+}

@@ -1,0 +1,6 @@
+[% import "utils.eol"; %]
+
+[* Generate each file in his package *]
+[%
+	generateFile('nb-configuration', 'xml', 'VehicleTax');
+%]
