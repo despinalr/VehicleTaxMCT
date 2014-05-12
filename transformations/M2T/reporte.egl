@@ -1,0 +1,27 @@
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <script src='//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js'></script>
+        <script src='main.js'></script>
+    </head>
+    <body>
+        <h1>Operaciones</h1>
+        <button id='consultarPagados'>Pagados</button>
+        <button id='consultarPendientes'>Pendientes por Pagar</button>
+        <br/>
+        <br/>
+        <div>
+            <table border='1' id='tablaReporte'>
+                <tr>
+                <td>NOMBRE</td>
+                <td>IDENTIFICACION</td>
+                <td>DIRECCION</td>
+                <td>CIUDAD</td>
+                <td>PLACA</td>
+                <td>FECHA</td>
+                <td>VALOR</td>
+                </tr>
+            </table>
+        </div>
+    </body>
+</html>

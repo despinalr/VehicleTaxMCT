@@ -23,6 +23,6 @@
 	generateFile('Logic', 'java', 'VehicleTax/src/main/java/logic');
 	generateFile('Service', 'java', 'VehicleTax/src/main/java/rest');
 	generateFile('main', 'js', 'VehicleTax/src/main/webapp');
-	generateFile('pago', 'html', 'VehicleTax/src/main/webapp');
+	generateFile('pagohtml', 'html', 'VehicleTax/src/main/webapp');
 	generateFile('reporte', 'html', 'VehicleTax/src/main/webapp');
 %]
