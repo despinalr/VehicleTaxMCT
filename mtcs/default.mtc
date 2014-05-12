@@ -7,7 +7,7 @@
   <inputModels model="//@models.0" transformation="//@transformations.1"/>
   <inputModels transformation="//@transformations.2"/>
   <inputModels model="//@models.1" transformation="//@transformations.2"/>
-  <transformations xsi:type="com.mtcflow.model:T2MTransformation" name="DSL2Problem" URI="models/text.vtdsl"/>
+  <transformations xsi:type="com.mtcflow.model:T2MTransformation" name="DSL2Problem" URI="models/text.vtdsl" technology=""/>
   <transformations xsi:type="com.mtcflow.model:M2MTransformation" name="Problem2Architecture" URI="Problem2Arquitecture.etl"/>
   <transformations xsi:type="com.mtcflow.model:M2TTransformation" name="SourceCode" URI="main.egl"/>
   <outputModels model="//@models.0" transformation="//@transformations.0"/>
