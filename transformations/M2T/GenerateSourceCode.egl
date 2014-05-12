@@ -1,6 +1,28 @@
 [% import "utils.eol"; %]
 
 [* Generate each file in his package *]
+
+[* Archivos Fijos *]
 [%
 	generateFile('nb-configuration', 'xml', 'VehicleTax');
+	generateFile('pom', 'xml', 'VehicleTax');
+	generateFile('persistence', 'xml', 'VehicleTax/src/main/resources/META-INF');
+	generateFile('glassfish-resources', 'xml', 'VehicleTax/src/main/setup');
+	generateFile('index', 'html', 'VehicleTax/src/main/webapp');
+	generateFile('style', 'css', 'VehicleTax/src/main/webapp');
+	generateFile('beans', 'xml', 'VehicleTax/src/main/webapp/WEB-INF');
+	generateFile('web', 'xml', 'VehicleTax/src/main/webapp/WEB-INF');
+%]
+
+[* Archivos Dinámicos *]
+[%
+	generateFile('Contribuyente', 'java', 'VehicleTax/src/main/java/entity');
+	generateFile('Pago', 'java', 'VehicleTax/src/main/java/entity');
+	generateFile('Vehiculo', 'java', 'VehicleTax/src/main/java/entity');
+	generateFile('ILogic', 'java', 'VehicleTax/src/main/java/logic');
+	generateFile('Logic', 'java', 'VehicleTax/src/main/java/logic');
+	generateFile('Service', 'java', 'VehicleTax/src/main/java/rest');
+	generateFile('main', 'js', 'VehicleTax/src/main/webapp');
+	generateFile('pago', 'html', 'VehicleTax/src/main/webapp');
+	generateFile('reporte', 'html', 'VehicleTax/src/main/webapp');
 %]
