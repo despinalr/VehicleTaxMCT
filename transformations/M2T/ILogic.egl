@@ -6,7 +6,9 @@ import entity.Pago;
 import java.util.List;
 
 public interface ILogic {
+    [* Aqui es dinámico *]
     public Vehiculo getVehiculo(String placa);
+    [* / Aqui es dinámico *]
     public Vehiculo updateVehiculo(Vehiculo vehiculo);
     
     public Contribuyente getContribuyente(Long id);

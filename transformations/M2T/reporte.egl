@@ -13,6 +13,7 @@
         <div>
             <table border='1' id='tablaReporte'>
                 <tr>
+                [* Aqui es dinámico *]
                 <td>NOMBRE</td>
                 <td>IDENTIFICACION</td>
                 <td>DIRECCION</td>
@@ -20,6 +21,7 @@
                 <td>PLACA</td>
                 <td>FECHA</td>
                 <td>VALOR</td>
+                [* / Aqui es dinámico *]
                 </tr>
             </table>
         </div>

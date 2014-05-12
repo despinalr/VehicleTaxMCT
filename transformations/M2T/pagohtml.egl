@@ -14,15 +14,19 @@
             <br/>
             <table>
                 <tr>
+                [* Aqui es dinámico *]
                     <td>Placa: </td><td><input type='text' id='placa'></td>
                     <td>Modelo: </td><td><input type='text' id='modelo'></td>
                     <td>Uso: </td><td><input type='text' id='uso'></td>
+                [* / Aqui es dinámico *]
                     <td><button id='buscarVehiculo'>Buscar</button><br/><button id='actualizarVehiculo' disabled>Actualizar</button></td>
                 </tr>
                 <tr>
+                [* Aqui es dinámico *]
                     <td>Marca: </td><td><input type='text' id='marca'></td>
                     <td>Linea: </td><td><input type='text' id='linea'></td>
                     <td>Capacidad: </td><td><input type='text' id='capacidad'></td>
+                [* / Aqui es dinámico *]
                 </tr>
             </table>
         </div>
@@ -32,13 +36,17 @@
             <br/>
             <table>
                 <tr>
+                [* Aqui es dinámico *]
                     <td>Identificacion: </td><td><input type='text' id='identificacion'></td>
                     <td>Direccion: </td><td><input type='text' id='direccion'></td>
+                [* / Aqui es dinámico *]
                     <td><button id='actualizarContribuyente' disabled>Actualizar</button></td>
                 </tr>
                 <tr>
+                [* Aqui es dinámico *]
                     <td>Nombre: </td><td><input type='text' id='nombre'></td>
                     <td>Ciudad: </td><td><input type='text' id='ciudad'></td>
+                [* / Aqui es dinámico *]
                 </tr>
             </table>
         </div>
@@ -48,14 +56,18 @@
             <br/>
             <table border='1' id='liquidacion'>
                 <tr><td>Item</td><td>Valor</td></tr>
+            [* Aqui es dinámico *]
                 <tr><td>Valor Base</td><td><input type='text' id='valorbase'></td></tr>
                 <tr><td>Derechos Semaforizacion</td><td><input type='text' id='derechos'></td></tr>
                 <tr><td>Descuento</td><td><input type='text' id='descuento'></td></tr>
+            [* / Aqui es dinámico *]
             </table>
             <br/>
             <button id='calcularLiquidacion'>Calcular</button>
             <br/><br/>
+            [* Aqui es dinámico *]
             <h1>Formula: </h1><input type='text' id='formula' value='<valorbase> + <derechos> + <descuento>' size='100'>
+            [* / Aqui es dinámico *]
             <br/><br/>
             <table>
                 <tr><td><h1>Valor a Pagar: </h1></td><td><input type='text' id='resultado' disabled></td><td><button id='pagarLiquidacion' disabled>Pagar</button></td><td><button id='generarComprobante' disabled>Comprobante</button></td></tr>

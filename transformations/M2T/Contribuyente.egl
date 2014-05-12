@@ -11,10 +11,12 @@ public class Contribuyente {
     @Id
     @GeneratedValue(generator = "Contribuyente")
     private Long id;
+    [* Aqui es dinámico *]
     private String identificacion;
     private String nombre;
     private String direccion;
     private String ciudad;
+    [* / Aqui es dinámico *]
     
     public Long getId(){
         return id;
@@ -23,6 +25,7 @@ public class Contribuyente {
         this.id = id;
     }
     
+    [* Aqui es dinámico *]
     public String getidentificacion(){
         return identificacion;
     }
@@ -50,4 +53,5 @@ public class Contribuyente {
     public void setciudad(String ciudad){
         this.ciudad = ciudad;
     }
+    [* / Aqui es dinámico *]
 }

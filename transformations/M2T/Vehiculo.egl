@@ -11,14 +11,16 @@ public class Vehiculo {
     @Id
     @GeneratedValue(generator = "Vehiculo")
     private Long id;
+    [* Aqui es dinámico *]
     private String placa;
     private String modelo;
     private String uso;
     private String marca;
     private String linea;
     private String capacidad;
+    [* / Aqui es dinámico *]
     private Long idcontribuyente;
-    
+        
     public Long getId(){
         return id;
     }
@@ -26,6 +28,7 @@ public class Vehiculo {
         this.id = id;
     }
     
+    [* Aqui es dinámico *]
     public String getplaca(){
         return placa;
     }
@@ -67,6 +70,7 @@ public class Vehiculo {
     public void setcapacidad(String capacidad){
         this.capacidad = capacidad;
     }
+    [* / Aqui es dinámico *]
     
     public Long getidcontribuyente(){
         return idcontribuyente;

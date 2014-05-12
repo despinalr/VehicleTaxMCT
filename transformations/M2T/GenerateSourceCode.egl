@@ -12,12 +12,12 @@
 	generateFile('style', 'css', 'VehicleTax/src/main/webapp');
 	generateFile('beans', 'xml', 'VehicleTax/src/main/webapp/WEB-INF');
 	generateFile('web', 'xml', 'VehicleTax/src/main/webapp/WEB-INF');
+	generateFile('Pago', 'java', 'VehicleTax/src/main/java/entity');
 %]
 
 [* Archivos Dinámicos *]
 [%
 	generateFile('Contribuyente', 'java', 'VehicleTax/src/main/java/entity');
-	generateFile('Pago', 'java', 'VehicleTax/src/main/java/entity');
 	generateFile('Vehiculo', 'java', 'VehicleTax/src/main/java/entity');
 	generateFile('ILogic', 'java', 'VehicleTax/src/main/java/logic');
 	generateFile('Logic', 'java', 'VehicleTax/src/main/java/logic');

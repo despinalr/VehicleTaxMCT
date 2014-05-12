@@ -28,11 +28,13 @@ public class Service {
     @Inject
     protected ILogic _logic;
     
+    [* Aqui es dinámico *]
     @GET
     @Path("{placa}")
     public Vehiculo getVehiculo(@PathParam("placa") String placa){
         return _logic.getVehiculo(placa);
     }
+    [* / Aqui es dinámico *]
     
     @POST
     public Vehiculo updateVehiculo(Vehiculo vehiculo){
