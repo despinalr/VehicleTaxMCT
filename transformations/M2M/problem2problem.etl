@@ -1,5 +1,55 @@
-rule Model2Model
+rule Model2Application
 	transform a:IN!Model
-	to b: OUT!Model{
-		b.nombre = a.nombre + '_transformado';
+	to b:OUT!Application{
+		b.name = a.nombre;
+		b.frontend = new OUT!FrontEnd;
+		b.backend = new OUT!BackEnd;
+		
 	}
+	
+rule Model2FronEnd
+	transform a:IN!Model
+	to b:OUT!FrontEnd{
+		b.name = 'co.edu.uniandes.miso4202.proyecto.view';
+		b.views ::= a.entidades;
+	}	
+	
+rule Entidad2View
+	transform a:IN!Entidad
+	to b:OUT!View{
+		b.name = a.nombre + 'View.html';	
+		b.graphicControls ::= a.propiedades;	
+	}
+	
+rule ListaString2DropDownList
+	transform a:IN!AtributoListaString
+	to b:OUT!DropDownList{
+		b.items.addAll(a.valores.collect(x | x.toString()));
+	}
+	
+rule ListaInteger2DrowDownList
+	transform a:IN!AtributoListaInteger
+	to b:OUT!DropDownList{
+		b.items.addAll(a.valores.collect(x | x.toString()));
+	}
+	
+rule AtributoSimple2TextBox
+	transform a:IN!AtributoSimple
+	to b:OUT!TextBox{
+		b.type = a.tipo.toInputType();
+	}
+	
+rule AtributoInicializado2Label
+	transform a:IN!AtributoInicializado
+	to b:OUT!Label{
+		b.name = a.nombre;
+		b.text = a.valor.toString();
+	}
+	
+operation String toInputType():String{
+	if(self = 'Real' or self = 'Int'){
+		return 'number';
+	}else{
+		return 'text';
+	}
+}	

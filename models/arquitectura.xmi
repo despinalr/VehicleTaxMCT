@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="ASCII"?>
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Arch="http://Arch/1.0">
+  <Arch:Application name="DSL">
+    <frontend/>
+    <backend/>
+  </Arch:Application>
+  <Arch:FrontEnd name="co.edu.uniandes.miso4202.proyecto.view">
+    <views name="RegistoView.html"/>
+    <views name="ContactoView.html">
+      <graphicControls xsi:type="Arch:TextBox" type="text"/>
+      <graphicControls xsi:type="Arch:TextBox" type="text"/>
+      <graphicControls xsi:type="Arch:DropDownList">
+        <items>CC</items>
+        <items>TI</items>
+        <items>PT</items>
+        <items>CE</items>
+      </graphicControls>
+      <graphicControls xsi:type="Arch:TextBox" type="text"/>
+      <graphicControls xsi:type="Arch:DropDownList">
+        <items>propietario</items>
+        <items>poseedor</items>
+      </graphicControls>
+      <graphicControls xsi:type="Arch:TextBox" type="text"/>
+    </views>
+    <views name="PagoView.html">
+      <graphicControls xsi:type="Arch:TextBox" type="text"/>
+      <graphicControls xsi:type="Arch:TextBox" type="number"/>
+      <graphicControls xsi:type="Arch:TextBox" type="text"/>
+      <graphicControls xsi:type="Arch:TextBox" type="number"/>
+    </views>
+  </Arch:FrontEnd>
+  <Arch:DropDownList>
+    <items>Chevrolet</items>
+    <items>Renault</items>
+    <items>Mazda</items>
+    <items>Ford</items>
+    <items>Audi</items>
+    <items>BMW</items>
+  </Arch:DropDownList>
+  <Arch:DropDownList>
+    <items>Particular</items>
+    <items>Publico</items>
+  </Arch:DropDownList>
+  <Arch:DropDownList>
+    <items>Particular</items>
+    <items>Publico</items>
+  </Arch:DropDownList>
+  <Arch:DropDownList>
+    <items>Automovil o Camioneta</items>
+    <items>Motocicleta</items>
+    <items>Servicio de Carga</items>
+    <items>Carga de pasajeros</items>
+  </Arch:DropDownList>
+  <Arch:DropDownList>
+    <items>2010</items>
+    <items>2011</items>
+    <items>2012</items>
+    <items>2013</items>
+    <items>2014</items>
+    <items>2015</items>
+  </Arch:DropDownList>
+  <Arch:TextBox type="text"/>
+  <Arch:TextBox type="number"/>
+  <Arch:TextBox type="text"/>
+  <Arch:TextBox type="number"/>
+  <Arch:TextBox type="number"/>
+  <Arch:TextBox type="number"/>
+  <Arch:Label name="Semaforizacion" text="50000"/>
+  <Arch:Label name="Descuento pronto pago" text="0.1"/>
+</xmi:XMI>
