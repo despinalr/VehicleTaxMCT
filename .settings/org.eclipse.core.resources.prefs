@@ -2,7 +2,6 @@
 <<<<<<<=HEAD
 >>>>>>>=dea22fb8d18d431064ce3f245312d7abd1b56710
 eclipse.preferences.version=1
-encoding//metamodels/Architecture.ecorediag=UTF-8
-encoding//metamodels/Platform.ecorediag=UTF-8
-encoding//metamodels/problem.ecorediag=UTF-8
+encoding//metamodels/Arch.ecorediag=UTF-8
+encoding//metamodels/Vtdsl.ecorediag=UTF-8
 encoding/<project>=UTF-8

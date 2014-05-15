@@ -1,0 +1,5 @@
+rule Model2Model
+	transform a:IN!Model
+	to b: OUT!Model{
+		b.nombre = a.nombre + '_transformado';
+	}
