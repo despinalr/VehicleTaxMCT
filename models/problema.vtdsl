@@ -1,6 +1,6 @@
 DSL {
 
-	Registo "Impuesto Vehicular" {
+	Registro "Impuesto Vehicular" {
 
 		Clave {
 		   "Placa Vehiculo" : String;

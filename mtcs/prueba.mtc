@@ -5,6 +5,6 @@
   <models name="problemam" URI="problema.xmi" metamodels="//@metamodels.0"/>
   <models name="mproblemout" URI="arquitectura.xmi" metamodels="//@metamodels.1"/>
   <inputModels model="//@models.0" transformation="//@transformations.0"/>
-  <transformations xsi:type="com.mtcflow.model:M2MTransformation" name="problem2problem" URI="problem2problem.etl"/>
+  <transformations xsi:type="com.mtcflow.model:M2MTransformation" name="problems2arquitectura" URI="problema2arquitectura.etl"/>
   <outputModels model="//@models.1" transformation="//@transformations.0"/>
 </com.mtcflow.model:MTC>

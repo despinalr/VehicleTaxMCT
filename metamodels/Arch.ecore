@@ -83,7 +83,10 @@
   <eClassifiers xsi:type="ecore:EClass" name="TextBox" eSuperTypes="#//GraphicControl">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Div" eSuperTypes="#//GraphicControl"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Div" eSuperTypes="#//GraphicControl">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="graphicControls" upperBound="-1"
+        eType="#//GraphicControl" containment="true"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="DropDownList" eSuperTypes="#//GraphicControl">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="items" upperBound="-1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>

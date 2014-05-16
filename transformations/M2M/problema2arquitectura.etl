@@ -1,0 +1,166 @@
+--Construye la aplicación con sus dos capas
+rule Model2Application
+	transform a:IN!Model
+	to b:OUT!Application{
+		b.name = a.nombre;
+		
+		--Capa de vista (FrontEnd) y logica (BackEnd)
+		b.frontend = new OUT!FrontEnd;
+		b.backend = new OUT!BackEnd;
+		
+		b.frontend.name = 'co.edu.uniandes.miso4202.project.view';
+		b.frontend.views.add(a.entidades.selectOne(x | x.isKindOf(IN!Registro)).equivalent());
+		b.frontend.views.add(a.entidades.selectOne(x | x.isKindOf(IN!Contacto)).equivalent());
+		
+		b.backend.name = 'co.edu.uniandes.miso4202.project.logic';
+		--b.backend.entities ::= a.entidades;
+	}	
+
+@lazy
+rule Registro2View
+	transform r:IN!Registro
+	to v:OUT!View{
+		--Sección de datos del registro
+		var sec1 = new OUT!Div;
+		var sec2 = new OUT!Div;
+		var sec3 = new OUT!Div;
+		
+		--Separo objetos del registro
+		var clave:IN!Objeto = r.propiedades.selectOne(x | x.isKindOf(IN!Objeto) and x.nombre = 'Clave');
+		var atributos:IN!Objeto = r.propiedades.selectOne(x | x.isKindOf(IN!Objeto) and x.nombre = 'Atributos');
+		var operandos:IN!Objeto = r.propiedades.selectOne(x | x.isKindOf(IN!Objeto) and x.nombre = 'OperandosBase');
+		var adicionales:IN!Objeto = r.propiedades.selectOne(x | x.isKindOf(IN!Objeto) and x.nombre = 'OperandosAdicionales');
+		
+		--Campos seccion 1
+		sec1.name = atributos.nombre;
+		clave.propiedades.includingAll(atributos.propiedades).select(x | x.isKindOf(IN!Atributo)).collect(a | sec1.graphicControls.add(a.toInput()));
+		
+		--Campos seccion 2
+		sec2.name = operandos.nombre;
+		operandos.propiedades.select(x | x.isKindOf(IN!Atributo)).collect(a | sec2.graphicControls.add(a.toInput()));
+		
+		--Campos seccion 3
+		sec3.name = adicionales.nombre;
+		adicionales.propiedades.select(x | x.isKindOf(IN!Atributo)).collect(a | sec3.graphicControls.add(a.toInput()));			
+		
+		--Se adicionan las 3 secciones anidadas en divs a la vista
+		v.graphicControls.add(sec1);
+		v.graphicControls.add(sec2);
+		v.graphicControls.add(sec3);
+	}
+
+@lazy
+rule Contacto2View
+	transform c:IN!Contacto
+	to v:OUT!View{		
+		var div:OUT!Div = new OUT!Div;
+		div.name = c.nombre;
+		c.propiedades.select(x | x.isKindOf(IN!Atributo)).collect(a | div.graphicControls.add(a.toInput()));
+		v.graphicControls.add(div);		
+	}
+--Funcion que convierte un objeto del problema en un objeto div de la arquitectura
+operation IN!Objeto toDiv():OUT!Div{
+	var div = new OUT!Div;
+	div.graphicControls.addAll(self.toControls());
+	return div;
+}
+
+@lazy	
+rule Entidad2Entity
+	transform a:IN!Entidad
+	to b:OUT!Entity{
+		b.name = a.nombre;
+		for(p in a.propiedades.select(x | x.isKindOf(IN!Atributo))){			
+			b.methods.add(p.toGetMethod());
+		}
+	}	
+	
+operation IN!Atributo toGetMethod():OUT!Method{
+	var m = new OUT!Method;
+	var parts:Sequence = self.nombre.split(' ');
+	parts.println();
+	var name:String = '';
+	for(p in parts){
+		name = name.concat(p.firstToUpperCase());
+	} 
+	m.name = 'get' + name;
+	return m;
+}
+
+operation IN!Entidad toView():OUT!View{
+	var v = new OUT!View;
+	v.name = self.nombre + 'View.html';
+	v.graphicControls.addAll(self.propiedades.select(x | x.isKindOf(IN!Atributo)).collect(y | y.toInput()));
+	return v;
+}
+
+operation IN!Atributo toInput():OUT!GraphicControl{
+	var gc:OUT!GraphicControl;
+	if(self.isKindOf(IN!AtributoSimple)){
+		gc = new OUT!TextBox;
+		gc.type = self.tipo.toInputType();
+	}else if(self.isKindOf(IN!AtributoInicializado)){
+		gc = new OUT!Label;
+		gc.text = self.valor.toString();
+	}else if(self.isKindOf(IN!AtributoListaString) or self.isKindOf(IN!AtributoListaInteger)){
+		gc = new OUT!DropDownList;
+		gc.items.addAll(self.valores.collect(x | x.toString()));
+	}else{
+		gc = new OUT!TextBox;
+	}
+	gc.name = self.nombre;
+	return gc;
+}
+	--transform a:IN!Entidad
+	--to b:OUT!View{
+	--	b.name = a.nombre + 'View.html';	
+	--	b.graphicControls ::= a.propiedades;	
+	--}
+
+@lazy	
+rule Entidad2Controller
+	transform a:IN!Entidad
+	to b:OUT!Controller{
+		b.name = a.nombre + 'Controller.js';
+		
+	}	
+
+@lazy	
+rule ListaString2DropDownList
+	transform a:IN!AtributoListaString
+	to b:OUT!DropDownList{
+		b.name = a.nombre;
+		b.items.addAll(a.valores.collect(x | x.toString()));
+	}
+
+@lazy	
+rule ListaInteger2DrowDownList
+	transform a:IN!AtributoListaInteger
+	to b:OUT!DropDownList{
+		b.name = a.nombre;
+		b.items.addAll(a.valores.collect(x | x.toString()));
+	}
+
+@lazy	
+rule AtributoSimple2TextBox
+	transform a:IN!AtributoSimple
+	to b:OUT!TextBox{
+		b.name = a.nombre;
+		b.type = a.tipo.toInputType();
+	}
+	
+@lazy	
+rule AtributoInicializado2Label
+	transform a:IN!AtributoInicializado
+	to b:OUT!Label{
+		b.name = a.nombre;
+		b.text = a.valor.toString();
+	}
+	
+operation String toInputType():String{
+	if(self = 'Real' or self = 'Int'){
+		return 'number';
+	}else{
+		return 'text';
+	}
+}	

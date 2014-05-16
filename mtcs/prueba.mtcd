@@ -216,7 +216,7 @@
         </ownedStyle>
         <actualMapping xsi:type="description:EdgeMapping" href="../../../plugin/com.mtcflow.diagram/description/MTC.odesign#//@ownedViewpoints[name='mtc']/@ownedRepresentations[name='MTC%20Diagram']/@defaultLayer/@edgeMappings[name='Metamodel']"/>
       </ownedDiagramElements>
-      <ownedDiagramElements xsi:type="viewpoint:DNode" xmi:id="_ymkhENw9EeOB_f_216VUQg" name="problem2problem" tooltipText="Double click to open the related file" outgoingEdges="_1OMDkNw9EeOB_f_216VUQg" incomingEdges="_0vNokNw9EeOB_f_216VUQg" width="16" height="5" resizeKind="EAST_WEST">
+      <ownedDiagramElements xsi:type="viewpoint:DNode" xmi:id="_ymkhENw9EeOB_f_216VUQg" name="problems2arquitectura" tooltipText="Double click to open the related file" outgoingEdges="_1OMDkNw9EeOB_f_216VUQg" incomingEdges="_0vNokNw9EeOB_f_216VUQg" width="16" height="5" resizeKind="EAST_WEST">
         <target href="prueba.mtc#//@transformations.0"/>
         <semanticElements href="prueba.mtc#//@transformations.0"/>
         <decorations xmi:id="_ymwHQNw9EeOB_f_216VUQg">
