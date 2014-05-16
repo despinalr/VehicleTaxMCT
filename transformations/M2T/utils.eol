@@ -1,4 +1,7 @@
 operation generateFile(fileName:String, ext:String, path:String) {
-	var t:Template:=TemplateFactory.load(fileName + '.egl');
-	t.generate(path + '/' + fileName + '.' + ext);
+	for(application in Application.all()) {
+		var t:Template:=TemplateFactory.load(fileName + '.egl');
+		t.populate('app', application);
+		t.generate(path + '/' + fileName + '.' + ext);
+	}
 }
