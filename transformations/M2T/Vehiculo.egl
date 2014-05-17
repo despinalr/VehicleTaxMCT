@@ -12,12 +12,13 @@ public class Vehiculo {
     @GeneratedValue(generator = "Vehiculo")
     private Long id;
     [* Aqui es dinámico *]
-    private String placa;
-    private String modelo;
-    private String uso;
-    private String marca;
-    private String linea;
-    private String capacidad;
+    [%for(entity in app.backend.entities) {%]
+		[%if(entity.name == 'Vehiculo') {%]
+			[% for(attrib in entity.attributes) {%]
+	private [%= attrib.type%] [%= attrib.name%];
+			[%}%]
+		[%}%]
+	[%}%]
     [* / Aqui es dinámico *]
     private Long idcontribuyente;
         
@@ -29,47 +30,18 @@ public class Vehiculo {
     }
     
     [* Aqui es dinámico *]
-    public String getplaca(){
-        return placa;
+    [%for(entity in app.backend.entities) {%]
+		[%if(entity.name == 'Vehiculo') {%]
+			[% for(attrib in entity.attributes) {%]
+	public [%= attrib.type%] get[%= attrib.name%](){
+        return [%= attrib.name%];
     }
-    public void setplaca(String placa){
-        this.placa = placa;
+    public void set[%= attrib.name%]([%= attrib.type%] [%= attrib.name%]){
+        this.[%= attrib.name%] = [%= attrib.name%];
     }
-    
-    public String getmodelo(){
-        return modelo;
-    }
-    public void setmodelo(String modelo){
-        this.modelo = modelo;
-    }
-    
-    public String getuso(){
-        return uso;
-    }
-    public void setuso(String uso){
-        this.uso = uso;
-    }
-    
-    public String getmarca(){
-        return marca;
-    }
-    public void setmarca(String marca){
-        this.marca = marca;
-    }
-    
-    public String getlinea(){
-        return linea;
-    }
-    public void setlinea(String linea){
-        this.linea = linea;
-    }
-    
-    public String getcapacidad(){
-        return capacidad;
-    }
-    public void setcapacidad(String capacidad){
-        this.capacidad = capacidad;
-    }
+			[%}%]
+		[%}%]
+	[%}%]
     [* / Aqui es dinámico *]
     
     public Long getidcontribuyente(){
