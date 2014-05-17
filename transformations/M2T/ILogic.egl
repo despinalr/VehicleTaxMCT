@@ -7,7 +7,22 @@ import java.util.List;
 
 public interface ILogic {
     [* Aqui es dinámico *]
-    public Vehiculo getVehiculo(String placa);
+    [%for(logic in app.backend.logics) {%]
+		[% for(method in logic.methods) {%]
+			[% if(method.name == 'getVehiculo') {%]
+				[% var countParams = method.parameters.size(); var actualParam = 1; %]
+	public Vehiculo getVehiculo(
+				[% for(param in method.parameters) {%]
+	[%= param.type%] [%= param.name.replace(' ', '').toLowerCase()%]
+					[% if(actualParam < countParams) {%]
+					,
+					[%}
+					actualParam = actualParam + 1;%]
+				[%}%]
+	);
+			[%}%]
+		[%}%]
+	[%}%]
     [* / Aqui es dinámico *]
     public Vehiculo updateVehiculo(Vehiculo vehiculo);
     
