@@ -15,18 +15,30 @@
             <table>
                 <tr>
                 [* Aqui es dinámico *]
-                    <td>Placa: </td><td><input type='text' id='placa'></td>
-                    <td>Modelo: </td><td><input type='text' id='modelo'></td>
-                    <td>Uso: </td><td><input type='text' id='uso'></td>
+                	[%for(view in app.frontend.views) {%]
+		        		[%for(control in view.graphicControls) {%]
+		        			[% if(control.name == 'Atributos') { 
+		        				var index = 0;%]
+		        				[%for(subcontrol in control.graphicControls) { 
+		        					if(index == 3) { 
+		        						index = 0; %]
+		        						</tr><tr>
+		        					[%}%]
+		        					[% if(subcontrol.hasProperty('items')) {%]
+		        	<td>[%= subcontrol.name %]: </td><td><select>
+		        						[% for(selectOption in subcontrol.items) {%]
+		        	<option value='[%= selectOption%]'>[%= selectOption%]</option>
+		        						[%}%]
+		        	</select></td>
+		        					[%} else {%]
+		        	<td>[%= subcontrol.name %]: </td><td><input type='text' id='[%= subcontrol.name.replace(' ', '').toLowerCase() %]'></td>
+		        					[%} index = index + 1;%]
+		        				[%}%]
+		        			[%}%]
+		        		[%}%]
+		        	[%}%]
                 [* / Aqui es dinámico *]
                     <td><button id='buscarVehiculo'>Buscar</button><br/><button id='actualizarVehiculo' disabled>Actualizar</button></td>
-                </tr>
-                <tr>
-                [* Aqui es dinámico *]
-                    <td>Marca: </td><td><input type='text' id='marca'></td>
-                    <td>Linea: </td><td><input type='text' id='linea'></td>
-                    <td>Capacidad: </td><td><input type='text' id='capacidad'></td>
-                [* / Aqui es dinámico *]
                 </tr>
             </table>
         </div>
