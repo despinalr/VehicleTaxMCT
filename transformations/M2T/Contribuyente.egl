@@ -1,4 +1,3 @@
-[%= app.name %]
 package entity;
 
 import javax.persistence.Entity;
@@ -13,10 +12,13 @@ public class Contribuyente {
     @GeneratedValue(generator = "Contribuyente")
     private Long id;
     [* Aqui es dinámico *]
-    private String identificacion;
-    private String nombre;
-    private String direccion;
-    private String ciudad;
+    [%for(entity in app.backend.entities) {%]
+		[%if(entity.name == 'Contribuyente') {%]
+			[% for(attrib in entity.attributes) {%]
+	private [%= attrib.type%] [%= attrib.name%];
+			[%}%]
+		[%}%]
+	[%}%]
     [* / Aqui es dinámico *]
     
     public Long getId(){
@@ -27,32 +29,17 @@ public class Contribuyente {
     }
     
     [* Aqui es dinámico *]
-    public String getidentificacion(){
-        return identificacion;
+    [%for(entity in app.backend.entities) {%]
+		[%if(entity.name == 'Contribuyente') {%]
+			[% for(attrib in entity.attributes) {%]
+	public [%= attrib.type%] get[%= attrib.name%](){
+        return [%= attrib.name%];
     }
-    public void setidentificacion(String identificacion){
-        this.identificacion = identificacion;
+    public void set[%= attrib.name%]([%= attrib.type%] [%= attrib.name%]){
+        this.[%= attrib.name%] = [%= attrib.name%];
     }
-    
-    public String getnombre(){
-        return nombre;
-    }
-    public void setnombre(String nombre){
-        this.nombre = nombre;
-    }
-    
-    public String getdireccion(){
-        return direccion;
-    }
-    public void setdireccion(String direccion){
-        this.direccion = direccion;
-    }
-    
-    public String getciudad(){
-        return ciudad;
-    }
-    public void setciudad(String ciudad){
-        this.ciudad = ciudad;
-    }
+			[%}%]
+		[%}%]
+	[%}%]
     [* / Aqui es dinámico *]
 }

@@ -129,7 +129,7 @@
             <button id='calcularLiquidacion'>Calcular</button>
             <br/><br/>
             [* Aqui es dinámico *]
-            <h1>Formula: </h1><input type='text' id='formula' value='<valorbase> + <derechos> + <descuento>' size='100'>
+            <h1>Formula: </h1><input type='text' id='formula' value='<semaforizacion> + <cilindraje> - <avaluocomercial>' size='100'>
             [* / Aqui es dinámico *]
             <br/><br/>
             <table>
