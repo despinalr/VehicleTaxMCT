@@ -11,15 +11,14 @@ DSL {
 		   Uso: List of String = {"Particular", "Publico"};
 		   Modelo: Int;
 		   Linea: String;
-		   "Anio de vigencia": List of Integer = {2010, 2011, 2012, 2013, 2014, 2015};
+		   
 		}
 
 		OperandosBase "rentas y deducciones" {
 			"Avaluo Comercial": Real;
-		   	Cilindraje : Real;
-		   	"Tipo Servicio" : List of String = {"Particular", "Publico"};
-		   	Modelo : Int;
-		   	"Tipo Vehiculo" : List of String = {"Automovil o Camioneta", "Motocicleta", "Servicio de Carga", "Carga de pasajeros"};
+		   	Cilindraje : Real;		   	
+		   	Modelo : Int;		   
+		   	"Anio de vigencia": List of Integer = {2010, 2011, 2012, 2013, 2014, 2015};	
 		}
 
 		OperandosAdicionales {
@@ -29,7 +28,7 @@ DSL {
 
 
 		Formula {
-		  valorPagar = ("Avaluo Comercial" * (Cilindraje / 1000 / 100)) * (1 - "Descuento pronto pago");
+		  valorPagar = ("Avaluo Comercial" * (Cilindraje / 1000 / 100)) * (1 - "Descuento pronto pago") * (1 - (AnioPago - Modelo)/100);
 		}
 
 	}

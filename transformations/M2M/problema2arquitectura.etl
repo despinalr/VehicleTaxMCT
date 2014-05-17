@@ -24,12 +24,14 @@ rule Registro2View
 		var sec1 = new OUT!Div;
 		var sec2 = new OUT!Div;
 		var sec3 = new OUT!Div;
+		var sec4 = new OUT!Div;
 		
 		--Separo objetos del registro
 		var clave:IN!Objeto = r.propiedades.selectOne(x | x.isKindOf(IN!Objeto) and x.nombre = 'Clave');
 		var atributos:IN!Objeto = r.propiedades.selectOne(x | x.isKindOf(IN!Objeto) and x.nombre = 'Atributos');
 		var operandos:IN!Objeto = r.propiedades.selectOne(x | x.isKindOf(IN!Objeto) and x.nombre = 'OperandosBase');
 		var adicionales:IN!Objeto = r.propiedades.selectOne(x | x.isKindOf(IN!Objeto) and x.nombre = 'OperandosAdicionales');
+		var formula:IN!Objeto = r.propiedades.selectOne(x | x.isKindOf(IN!Objeto) and x.nombre = 'Formula');
 		
 		--Campos seccion 1
 		sec1.name = atributos.nombre;
@@ -41,7 +43,10 @@ rule Registro2View
 		
 		--Campos seccion 3
 		sec3.name = adicionales.nombre;
-		adicionales.propiedades.select(x | x.isKindOf(IN!Atributo)).collect(a | sec3.graphicControls.add(a.toInput()));			
+		adicionales.propiedades.select(x | x.isKindOf(IN!Atributo)).collect(a | sec3.graphicControls.add(a.toInput()));		
+		
+		sec4.name = 'Formula aplicada';
+			
 		
 		--Se adicionan las 3 secciones anidadas en divs a la vista
 		v.graphicControls.add(sec1);
