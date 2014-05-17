@@ -111,15 +111,15 @@
 	        						[%}%]
 	        	</select></td></tr>
 	        					[%} else {
-	        					if(subcontrol.type.name == 'Label') {%]
+		        					if(subcontrol.type.name == 'Label') {%]
 	        	<tr><td>[%= subcontrol.name %]: </td><td><input type='text' id='[%= subcontrol.name.replace(' ', '').toLowerCase() %]' value='[%= subcontrol.text %]' disabled></td></tr>
-	        					[%} else {%]
+		        					[%} else {%]
 	        	<tr><td>[%= subcontrol.name %]: </td><td><input type='text' id='[%= subcontrol.name.replace(' ', '').toLowerCase() %]'></td></tr>
+		        					[%}%]
 	        					[%}%]
 	        				[%}%]
 	        			[%}%]
 	        		[%}%]
-	        	[%}%]
 	        	[%}%]
             [* / Aqui es dinámico *]
             </table>
