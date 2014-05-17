@@ -37,39 +37,36 @@
       <propiedades xsi:type="vtdsl:AtributoInicializado" nombre="Semaforizacion" tipo="Real" valor="50000"/>
       <propiedades xsi:type="vtdsl:AtributoInicializado" nombre="Descuento pronto pago" tipo="Real" valor="0.1"/>
     </propiedades>
-    <propiedades nombre="Formula">
-      <propiedades xsi:type="vtdsl:Formula" nombre="valorPagar">
-        <expresiones xsi:type="vtdsl:Multi">
+    <formula nombre="valorPagar">
+      <expresiones xsi:type="vtdsl:Multi">
+        <left xsi:type="vtdsl:Multi">
           <left xsi:type="vtdsl:Multi">
-            <left xsi:type="vtdsl:Multi">
-              <left xsi:type="vtdsl:STRING" value="Avaluo Comercial"/>
-              <right xsi:type="vtdsl:Div">
-                <left xsi:type="vtdsl:Div">
-                  <left xsi:type="vtdsl:ID" value="Cilindraje"/>
-                  <right xsi:type="vtdsl:NumberLiteral" value="1000"/>
-                </left>
-                <right xsi:type="vtdsl:NumberLiteral" value="100"/>
-              </right>
-            </left>
-            <right xsi:type="vtdsl:Minus">
-              <left xsi:type="vtdsl:NumberLiteral" value="1"/>
-              <right xsi:type="vtdsl:STRING" value="Descuento pronto pago"/>
+            <left xsi:type="vtdsl:STRING" value="Avaluo Comercial"/>
+            <right xsi:type="vtdsl:Div">
+              <left xsi:type="vtdsl:Div">
+                <left xsi:type="vtdsl:ID" value="Cilindraje"/>
+                <right xsi:type="vtdsl:NumberLiteral" value="1000"/>
+              </left>
+              <right xsi:type="vtdsl:NumberLiteral" value="100"/>
             </right>
           </left>
           <right xsi:type="vtdsl:Minus">
             <left xsi:type="vtdsl:NumberLiteral" value="1"/>
-            <right xsi:type="vtdsl:Div">
-              <left xsi:type="vtdsl:Minus">
-                <left xsi:type="vtdsl:STRING" value="Anio de vigencia"/>
-                <right xsi:type="vtdsl:ID" value="Modelo"/>
-              </left>
-              <right xsi:type="vtdsl:NumberLiteral" value="100"/>
-            </right>
+            <right xsi:type="vtdsl:STRING" value="Descuento pronto pago"/>
           </right>
-        </expresiones>
-      </propiedades>
-    </propiedades>
-    <formula/>
+        </left>
+        <right xsi:type="vtdsl:Minus">
+          <left xsi:type="vtdsl:NumberLiteral" value="1"/>
+          <right xsi:type="vtdsl:Div">
+            <left xsi:type="vtdsl:Minus">
+              <left xsi:type="vtdsl:STRING" value="Anio de vigencia"/>
+              <right xsi:type="vtdsl:ID" value="Modelo"/>
+            </left>
+            <right xsi:type="vtdsl:NumberLiteral" value="100"/>
+          </right>
+        </right>
+      </expresiones>
+    </formula>
   </entidades>
   <entidades xsi:type="vtdsl:Contacto" nombre="Contribuyente">
     <propiedades xsi:type="vtdsl:AtributoSimple" nombre="apellidos" tipo="String"/>

@@ -48,7 +48,8 @@
         upperBound="-1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBigDecimal"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="AtributoLista" eSuperTypes="#//Atributo"/>
-  <eClassifiers xsi:type="ecore:EClass" name="Formula" eSuperTypes="#//Atributo">
+  <eClassifiers xsi:type="ecore:EClass" name="Formula">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="nombre" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="expresiones" upperBound="-1"
         eType="#//Expression" containment="true"/>
   </eClassifiers>
