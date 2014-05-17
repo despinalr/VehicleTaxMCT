@@ -30,10 +30,55 @@ public class Service {
     
     [* Aqui es dinámico *]
     @GET
-    @Path("{placa}")
-    public Vehiculo getVehiculo(@PathParam("placa") String placa){
-        return _logic.getVehiculo(placa);
-    }
+    [%for(logic in app.backend.services) {%]
+		[% for(method in logic.methods) {%]
+			[% if(method.name == 'getVehiculo') {%]
+				[% var countParams = method.parameters.size(); var actualParam = 1; %]
+	@Path(
+				[% for(param in method.parameters) {%]
+	"{[%= param.name.replace(' ', '').toLowerCase()%]}"
+					[% if(actualParam < countParams) {%]
+					/
+					[%}
+					actualParam = actualParam + 1;%]
+				[%}%]
+	)
+			[%}%]
+		[%}%]
+	[%}%]
+    [%for(logic in app.backend.services) {%]
+		[% for(method in logic.methods) {%]
+			[% if(method.name == 'getVehiculo') {%]
+				[% var countParams = method.parameters.size(); var actualParam = 1; %]
+	public Vehiculo getVehiculo(
+				[% for(param in method.parameters) {%]
+	@PathParam("[%= param.name.replace(' ', '').toLowerCase()%]") [%= param.type%] [%= param.name.replace(' ', '').toLowerCase()%]
+					[% if(actualParam < countParams) {%]
+					,
+					[%}
+					actualParam = actualParam + 1;%]
+				[%}%]
+	){
+	[%for(logic in app.backend.services) {%]
+		[% for(method in logic.methods) {%]
+			[% if(method.name == 'getVehiculo') {%]
+				[% var countParams = method.parameters.size(); var actualParam = 1; %]
+	return _logic.getVehiculo(
+				[% for(param in method.parameters) {%]
+	[%= param.name.replace(' ', '').toLowerCase()%]
+					[% if(actualParam < countParams) {%]
+					,
+					[%}
+					actualParam = actualParam + 1;%]
+				[%}%]
+	);
+	}
+			[%}%]
+		[%}%]
+	[%}%]
+			[%}%]
+		[%}%]
+	[%}%]
     [* / Aqui es dinámico *]
     
     @POST
