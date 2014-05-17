@@ -21,11 +21,41 @@ public class Logic implements ILogic {
     protected EntityManager entityManager;
     
     [* Aqui es dinámico *]
-    public Vehiculo getVehiculo(String placa) {
-        Query q = entityManager.createQuery("select u from Vehiculo u where u.placa = '" + placa + "'");
-        List<Vehiculo> vehiculos = q.getResultList();
-        return vehiculos.get(0);
+    [%for(logic in app.backend.logics) {%]
+		[% for(method in logic.methods) {%]
+			[% if(method.name == 'getVehiculo') {%]
+				[% var countParams = method.parameters.size(); var actualParam = 1; %]
+	public Vehiculo getVehiculo(
+				[% for(param in method.parameters) {%]
+	[%= param.type%] [%= param.name.replace(' ', '').toLowerCase()%]
+					[% if(actualParam < countParams) {%]
+					,
+					[%}
+					actualParam = actualParam + 1;%]
+				[%}%]
+	) {
+			[%}%]
+		[%}%]
+	[%}%]
+	[%for(logic in app.backend.logics) {%]
+		[% for(method in logic.methods) {%]
+			[% if(method.name == 'getVehiculo') {%]
+				[% var countParams = method.parameters.size(); var actualParam = 1; %]
+	Query q = entityManager.createQuery("select u from Vehiculo u where " +
+				[% for(param in method.parameters) {%]
+	"u.[%= param.name.replace(' ', '').toLowerCase()%] = '" + [%= param.name.replace(' ', '').toLowerCase()%] + "'"
+					[% if(actualParam < countParams) {%]
+					+ " AND " + 
+					[%}
+					actualParam = actualParam + 1;%]
+				[%}%]
+	);
+	List<Vehiculo> vehiculos = q.getResultList();
+    return vehiculos.get(0);
     }
+			[%}%]
+		[%}%]
+	[%}%]
     [* / Aqui es dinámico *]
     
     public Vehiculo updateVehiculo(Vehiculo vehiculo) {
