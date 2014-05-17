@@ -19,6 +19,11 @@
       </propiedades>
       <propiedades xsi:type="vtdsl:AtributoSimple" nombre="Modelo" tipo="Int"/>
       <propiedades xsi:type="vtdsl:AtributoSimple" nombre="Linea" tipo="String"/>
+    </propiedades>
+    <propiedades nombre="OperandosBase" descripcion="rentas y deducciones">
+      <propiedades xsi:type="vtdsl:AtributoSimple" nombre="Avaluo Comercial" tipo="Real"/>
+      <propiedades xsi:type="vtdsl:AtributoSimple" nombre="Cilindraje" tipo="Real"/>
+      <propiedades xsi:type="vtdsl:AtributoSimple" nombre="Modelo" tipo="Int"/>
       <propiedades xsi:type="vtdsl:AtributoListaInteger" nombre="Anio de vigencia">
         <valores>2010</valores>
         <valores>2011</valores>
@@ -26,21 +31,6 @@
         <valores>2013</valores>
         <valores>2014</valores>
         <valores>2015</valores>
-      </propiedades>
-    </propiedades>
-    <propiedades nombre="OperandosBase" descripcion="rentas y deducciones">
-      <propiedades xsi:type="vtdsl:AtributoSimple" nombre="Avaluo Comercial" tipo="Real"/>
-      <propiedades xsi:type="vtdsl:AtributoSimple" nombre="Cilindraje" tipo="Real"/>
-      <propiedades xsi:type="vtdsl:AtributoListaString" nombre="Tipo Servicio">
-        <valores>Particular</valores>
-        <valores>Publico</valores>
-      </propiedades>
-      <propiedades xsi:type="vtdsl:AtributoSimple" nombre="Modelo" tipo="Int"/>
-      <propiedades xsi:type="vtdsl:AtributoListaString" nombre="Tipo Vehiculo">
-        <valores>Automovil o Camioneta</valores>
-        <valores>Motocicleta</valores>
-        <valores>Servicio de Carga</valores>
-        <valores>Carga de pasajeros</valores>
       </propiedades>
     </propiedades>
     <propiedades nombre="OperandosAdicionales">
@@ -51,22 +41,35 @@
       <propiedades xsi:type="vtdsl:Formula" nombre="valorPagar">
         <expresiones xsi:type="vtdsl:Multi">
           <left xsi:type="vtdsl:Multi">
-            <left xsi:type="vtdsl:STRING" value="Avaluo Comercial"/>
-            <right xsi:type="vtdsl:Div">
-              <left xsi:type="vtdsl:Div">
-                <left xsi:type="vtdsl:ID" value="Cilindraje"/>
-                <right xsi:type="vtdsl:NumberLiteral" value="1000"/>
-              </left>
-              <right xsi:type="vtdsl:NumberLiteral" value="100"/>
+            <left xsi:type="vtdsl:Multi">
+              <left xsi:type="vtdsl:STRING" value="Avaluo Comercial"/>
+              <right xsi:type="vtdsl:Div">
+                <left xsi:type="vtdsl:Div">
+                  <left xsi:type="vtdsl:ID" value="Cilindraje"/>
+                  <right xsi:type="vtdsl:NumberLiteral" value="1000"/>
+                </left>
+                <right xsi:type="vtdsl:NumberLiteral" value="100"/>
+              </right>
+            </left>
+            <right xsi:type="vtdsl:Minus">
+              <left xsi:type="vtdsl:NumberLiteral" value="1"/>
+              <right xsi:type="vtdsl:STRING" value="Descuento pronto pago"/>
             </right>
           </left>
           <right xsi:type="vtdsl:Minus">
             <left xsi:type="vtdsl:NumberLiteral" value="1"/>
-            <right xsi:type="vtdsl:STRING" value="Descuento pronto pago"/>
+            <right xsi:type="vtdsl:Div">
+              <left xsi:type="vtdsl:Minus">
+                <left xsi:type="vtdsl:STRING" value="Anio de vigencia"/>
+                <right xsi:type="vtdsl:ID" value="Modelo"/>
+              </left>
+              <right xsi:type="vtdsl:NumberLiteral" value="100"/>
+            </right>
           </right>
         </expresiones>
       </propiedades>
     </propiedades>
+    <formula/>
   </entidades>
   <entidades xsi:type="vtdsl:Contacto" nombre="Contribuyente">
     <propiedades xsi:type="vtdsl:AtributoSimple" nombre="apellidos" tipo="String"/>

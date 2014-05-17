@@ -10,7 +10,7 @@ rule Model2Application
 		
 		b.frontend.name = 'co.edu.uniandes.miso4202.project.view';
 		b.frontend.views.add(a.entidades.selectOne(x | x.isKindOf(IN!Registro)).equivalent());
-		b.frontend.views.add(a.entidades.selectOne(x | x.isKindOf(IN!Contacto)).equivalent());
+		b.frontend.views.add(a.entidades.selectOne(x | x.isKindOf(IN!Contacto)).equivalent());			
 		
 		b.backend.name = 'co.edu.uniandes.miso4202.project.logic';
 		--b.backend.entities ::= a.entidades;
@@ -31,7 +31,11 @@ rule Registro2View
 		var atributos:IN!Objeto = r.propiedades.selectOne(x | x.isKindOf(IN!Objeto) and x.nombre = 'Atributos');
 		var operandos:IN!Objeto = r.propiedades.selectOne(x | x.isKindOf(IN!Objeto) and x.nombre = 'OperandosBase');
 		var adicionales:IN!Objeto = r.propiedades.selectOne(x | x.isKindOf(IN!Objeto) and x.nombre = 'OperandosAdicionales');
-		var formula:IN!Objeto = r.propiedades.selectOne(x | x.isKindOf(IN!Objeto) and x.nombre = 'Formula');
+		var formula = r.propiedades.selectOne(x | x.isKindOf(IN!Objeto) and x.nombre = 'Formula');
+		
+		formula.expresiones.println();
+		
+		--r.propiedades.collect(x | x.nombre).println();
 		
 		--Campos seccion 1
 		sec1.name = atributos.nombre;
@@ -46,7 +50,8 @@ rule Registro2View
 		adicionales.propiedades.select(x | x.isKindOf(IN!Atributo)).collect(a | sec3.graphicControls.add(a.toInput()));		
 		
 		sec4.name = 'Formula aplicada';
-			
+		
+		--formula.expresiones.isDefined().println();			
 		
 		--Se adicionan las 3 secciones anidadas en divs a la vista
 		v.graphicControls.add(sec1);
@@ -161,6 +166,19 @@ rule AtributoInicializado2Label
 		b.name = a.nombre;
 		b.text = a.valor.toString();
 	}
+	
+@lazy
+rule Formula2Label
+	transform f:IN!Formula
+	to t:OUT!Label{
+		t.name = 'Formula';
+		t.text = f.toString();
+		
+	}
+	
+operation IN!Formula toString():String{
+	self.expresiones.println();
+} 
 	
 operation String toInputType():String{
 	if(self = 'Real' or self = 'Int'){
