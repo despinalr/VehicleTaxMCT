@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="ASCII"?>
+<Arch:Application xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Arch="http://Arch/1.0" name="DSL">
+  <frontend name="co.edu.uniandes.miso4202.project.view">
+    <views>
+      <graphicControls xsi:type="Arch:Div" name="Atributos">
+        <graphicControls xsi:type="Arch:TextBox" name="placa" type="text"/>
+        <graphicControls xsi:type="Arch:TextBox" name="modelo" type="text"/>
+        <graphicControls xsi:type="Arch:TextBox" name="uso" type="text"/>
+        <graphicControls xsi:type="Arch:TextBox" name="marca" type="text"/>
+        <graphicControls xsi:type="Arch:TextBox" name="linea" type="text"/>
+        <graphicControls xsi:type="Arch:TextBox" name="capacidad" type="text"/>
+      </graphicControls>
+      <graphicControls xsi:type="Arch:Div" name="OperandosBase">
+        <graphicControls xsi:type="Arch:TextBox" name="avaluo" type="number"/>
+        <graphicControls xsi:type="Arch:TextBox" name="otros" type="number"/>
+      </graphicControls>
+      <graphicControls xsi:type="Arch:Div" name="OperandosAdicionales">
+        <graphicControls xsi:type="Arch:Label" name="semaforizacion" text="50000"/>
+        <graphicControls xsi:type="Arch:Label" name="descuento" text="0.1"/>
+      </graphicControls>
+      <graphicControls xsi:type="Arch:Div" name="Formula aplicada">
+        <graphicControls xsi:type="Arch:Label" name="Formula" text="&lt;avaluo> + &lt;otros> + &lt;semaforizacion> + (&lt;avaluo> - (&lt;avaluo> + &lt;descuento>))"/>
+      </graphicControls>
+    </views>
+    <views>
+      <graphicControls xsi:type="Arch:Div" name="Contribuyente">
+        <graphicControls xsi:type="Arch:TextBox" name="identificacion" type="text"/>
+        <graphicControls xsi:type="Arch:TextBox" name="nombre" type="text"/>
+        <graphicControls xsi:type="Arch:TextBox" name="direccion" type="text"/>
+        <graphicControls xsi:type="Arch:TextBox" name="ciudad" type="text"/>
+      </graphicControls>
+    </views>
+  </frontend>
+  <backend name="co.edu.uniandes.miso4202.project.logic">
+    <services name="Service">
+      <methods name="getVehiculo" returntype="Vehiculo">
+        <parameters name="placa" type="String"/>
+      </methods>
+      <methods name="updateVehiculo" returntype="Vehiculo">
+        <parameters name="vehiculo" type="Vehiculo"/>
+      </methods>
+      <methods name="getContribuyente" returntype="Contribuyente">
+        <parameters name="id" type="Long"/>
+      </methods>
+      <methods name="updateContribuyente" returntype="Contribuyente">
+        <parameters name="contribuyente" type="Contribuyente"/>
+      </methods>
+      <methods name="createPago" returntype="Pago">
+        <parameters name="pago" type="Pago"/>
+      </methods>
+      <methods name="consultarPagosPendientes" returntype="List"/>
+      <methods name="consultarPagosRealizados" returntype="List"/>
+    </services>
+    <logics name="Logic">
+      <methods name="getVehiculo" returntype="Vehiculo">
+        <parameters name="Placa" type="String"/>
+      </methods>
+      <methods name="updateVehiculo" returntype="Vehiculo">
+        <parameters name="vehiculo" type="Vehiculo"/>
+      </methods>
+      <methods name="getContribuyente" returntype="Contribuyente">
+        <parameters name="id" type="Long"/>
+      </methods>
+      <methods name="updateContribuyente" returntype="Contribuyente">
+        <parameters name="contribuyente" type="Contribuyente"/>
+      </methods>
+      <methods name="createPago" returntype="Pago">
+        <parameters name="pago" type="Pago"/>
+      </methods>
+      <methods name="consultarPagosPendientes" returntype="List"/>
+      <methods name="consultarPagosRealizados" returntype="List"/>
+    </logics>
+    <entities name="Vehiculo">
+      <attributes name="placa" type="String"/>
+      <attributes name="modelo" type="String"/>
+      <attributes name="uso" type="String"/>
+      <attributes name="marca" type="String"/>
+      <attributes name="linea" type="String"/>
+      <attributes name="capacidad" type="String"/>
+    </entities>
+    <entities name="Pago">
+      <attributes name="idVehiculo" type="Long"/>
+      <attributes name="fecha" type="String"/>
+      <attributes name="a&#xf1;o" type="int"/>
+      <attributes name="valor" type="Long"/>
+    </entities>
+    <entities name="Contribuyente">
+      <attributes name="identificacion" type="String"/>
+      <attributes name="nombre" type="String"/>
+      <attributes name="direccion" type="String"/>
+      <attributes name="ciudad" type="String"/>
+    </entities>
+  </backend>
+</Arch:Application>

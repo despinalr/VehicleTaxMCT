@@ -141,7 +141,7 @@
             [* / Aqui es dinámico *]
             <br/><br/>
             <table>
-                <tr><td><h1>Valor a Pagar: </h1></td><td><input type='text' id='resultado' disabled></td><td><button id='pagarLiquidacion' disabled>Pagar</button></td><td><button id='generarComprobante' disabled>Comprobante</button></td></tr>
+                <tr><td><h1>Valor a Pagar: </h1></td><td><input type='text' id='resultado' disabled></td><td><button id='pagarLiquidacion' disabled>Pagar</button></td></tr>
             </table>
         </div>
     </body>

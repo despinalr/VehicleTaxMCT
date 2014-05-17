@@ -16,7 +16,7 @@
                 [* Aqui es dinámico *]
                 [%for(view in app.frontend.views) {%]
 	        		[%for(control in view.graphicControls) {%]
-	        			[% if(control.name == 'Contribuyente') {%]
+	        			[% if(control.name == 'Atributos') {%]
 	        				[%for(subcontrol in control.graphicControls) {%]
 	    		<td>[%= subcontrol.name %]</td>
 	        				[%}%]
@@ -25,7 +25,7 @@
 	        	[%}%]
 	        	[%for(view in app.frontend.views) {%]
 	        		[%for(control in view.graphicControls) {%]
-	        			[% if(control.name == 'Atributos') {%]
+	        			[% if(control.name == 'Contribuyente') {%]
 	        				[%for(subcontrol in control.graphicControls) {%]
 	    		<td>[%= subcontrol.name %]</td>
 	        				[%}%]
@@ -33,6 +33,8 @@
 	        		[%}%]
 	        	[%}%]
                 [* / Aqui es dinámico *]
+                <td>FECHA PAGO</td>
+                <td>VALOR</td>
                 </tr>
             </table>
         </div>
