@@ -15,7 +15,7 @@ public class Vehiculo {
     [%for(entity in app.backend.entities) {%]
 		[%if(entity.name == 'Vehiculo') {%]
 			[% for(attrib in entity.attributes) {%]
-	private [%= attrib.type%] [%= attrib.name%];
+	private [%= attrib.type%] [%= attrib.name.replace(' ', '').toLowerCase()%];
 			[%}%]
 		[%}%]
 	[%}%]
@@ -33,11 +33,11 @@ public class Vehiculo {
     [%for(entity in app.backend.entities) {%]
 		[%if(entity.name == 'Vehiculo') {%]
 			[% for(attrib in entity.attributes) {%]
-	public [%= attrib.type%] get[%= attrib.name%](){
-        return [%= attrib.name%];
+	public [%= attrib.type%] get[%= attrib.name.replace(' ', '').toLowerCase()%](){
+        return [%= attrib.name.replace(' ', '').toLowerCase()%];
     }
-    public void set[%= attrib.name%]([%= attrib.type%] [%= attrib.name%]){
-        this.[%= attrib.name%] = [%= attrib.name%];
+    public void set[%= attrib.name.replace(' ', '').toLowerCase()%]([%= attrib.type%] [%= attrib.name.replace(' ', '').toLowerCase()%]){
+        this.[%= attrib.name.replace(' ', '').toLowerCase()%] = [%= attrib.name.replace(' ', '').toLowerCase()%];
     }
 			[%}%]
 		[%}%]
