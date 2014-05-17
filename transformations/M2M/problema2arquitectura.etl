@@ -31,9 +31,9 @@ rule Registro2View
 		var atributos:IN!Objeto = r.propiedades.selectOne(x | x.isKindOf(IN!Objeto) and x.nombre = 'Atributos');
 		var operandos:IN!Objeto = r.propiedades.selectOne(x | x.isKindOf(IN!Objeto) and x.nombre = 'OperandosBase');
 		var adicionales:IN!Objeto = r.propiedades.selectOne(x | x.isKindOf(IN!Objeto) and x.nombre = 'OperandosAdicionales');
-		var formula = r.propiedades.selectOne(x | x.isKindOf(IN!Objeto) and x.nombre = 'Formula');
 		
-		formula.expresiones.println();
+		
+		
 		
 		--r.propiedades.collect(x | x.nombre).println();
 		
@@ -50,14 +50,49 @@ rule Registro2View
 		adicionales.propiedades.select(x | x.isKindOf(IN!Atributo)).collect(a | sec3.graphicControls.add(a.toInput()));		
 		
 		sec4.name = 'Formula aplicada';
+		var lFormula = new OUT!Label;
+		lFormula.name = 'Formula';
+		lFormula.text = r.formula.expresiones.first().toText();
+		sec4.graphicControls.add(lFormula);			
 		
-		--formula.expresiones.isDefined().println();			
-		
-		--Se adicionan las 3 secciones anidadas en divs a la vista
+		--Se adicionan las 4 secciones anidadas en divs a la vista
 		v.graphicControls.add(sec1);
 		v.graphicControls.add(sec2);
 		v.graphicControls.add(sec3);
+		v.graphicControls.add(sec4);
+				
 	}
+	
+operation IN!Expression toText():String{
+	var acum:String = '';
+	if(self.isTypeOf(IN!Multi) or self.isTypeOf(IN!Div) or self.isTypeOf(IN!Plus) or self.isTypeOf(IN!Minus)){
+		acum = '(' + acum + self.left.toText() + self.toSign() + self.right.toText() + ')';
+	}else{
+		if(self.isTypeOf(IN!NumberLiteral)){
+			acum = acum + self.value.toString() + '';
+		}else{
+			acum = acum + '<' + self.value.toString().toId() + '>';
+		}
+		
+	}
+	return acum;
+}
+
+operation IN!Expression toSign():String{
+	var sign:String;
+	if(self.isTypeOf(IN!Plus)){
+		sign = '+';
+	}else if(self.isTypeOf(IN!Minus)){
+		sign = '-';
+	}else if(self.isTypeOf(IN!Multi)){
+		sign = '*';
+	}else if(self.isTypeOf(IN!Div)){
+		sign = '/';
+	}else{
+		sign = '';
+	}
+	return sign;
+}
 
 @lazy
 rule Contacto2View
@@ -179,6 +214,15 @@ rule Formula2Label
 operation IN!Formula toString():String{
 	self.expresiones.println();
 } 
+
+operation String toId():String{
+	var id:String = '';
+	var parts = self.split(' ');
+	for(p in parts){
+		id = id + p.toLowerCase();
+	}
+	return id;
+}
 	
 operation String toInputType():String{
 	if(self = 'Real' or self = 'Int'){
