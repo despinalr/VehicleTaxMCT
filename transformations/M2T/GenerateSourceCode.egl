@@ -11,6 +11,8 @@
 	generateFile('beans', 'xml', 'VehicleTax/src/main/webapp/WEB-INF');
 	generateFile('web', 'xml', 'VehicleTax/src/main/webapp/WEB-INF');
 	generateFile('Pago', 'java', 'VehicleTax/src/main/java/entity');
+	generateFile('jspdf', 'js', 'VehicleTax/src/main/webapp');
+	generateFile('FileSaver', 'js', 'VehicleTax/src/main/webapp');
 %]
 
 [* Archivos Dinámicos *]

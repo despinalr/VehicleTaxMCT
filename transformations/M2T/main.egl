@@ -3,222 +3,228 @@ $(document).on('ready', function() {
             window.location.href = 'reporte.html';
 	});
         
-        $('#actualizar').click(function() {
+    $('#actualizar').click(function() {
             window.location.href = 'pagohtml.html';
 	});
         
-        $('#buscarVehiculo').click(function() {
-        [* Aqui es dinámico *]
-            [%for(view in app.frontend.views) {%]
-        		[%for(control in view.graphicControls) {%]
-        			[% if(control.name == 'Atributos') {%]
-        				[%for(subcontrol in control.graphicControls) {%]
-        	$.get('http://localhost:8080/VehicleTax/webresources/Service/' + $('#[%= subcontrol.name.replace(' ', '').toLowerCase() %]').val(), function(data) {
-        				[% break; }%]
-        			[%}%]
-        		[%}%]
-        	[%}%]
-        [* / Aqui es dinámico *]
-                updateFieldsVehiculo(data);
-                $('#actualizarVehiculo').removeAttr('disabled');
-                $.get('http://localhost:8080/VehicleTax/webresources/Service/Contribuyente/' + $('#idcontribuyente').val(), function(data) {
-                    updateFieldsContribuyente(data);
-                    $('#actualizarContribuyente').removeAttr('disabled');
-                });
-            });
-	});
-        
-        $('#actualizarVehiculo').click(function() {
-        [* Aqui es dinámico *]
-            [%for(view in app.frontend.views) {%]
-        		[%for(control in view.graphicControls) {%]
-        			[% if(control.name == 'Atributos') {%]
-        			var vehiculo = {id:$('#idvehiculo').val()
-        				[%for(subcontrol in control.graphicControls) {%]
-        					,[%= subcontrol.name.replace(' ', '').toLowerCase() %]:$('#[%= subcontrol.name.replace(' ', '').toLowerCase() %]').val()
-        				[%}%]
-        				,idcontribuyente:$('#idcontribuyente').val()};
-        			[%}%]
-        		[%}%]
-        	[%}%]
-        [* / Aqui es dinámico *]
-            $.ajax({
-                url: 'http://localhost:8080/VehicleTax/webresources/Service',
-                type: 'POST',
-                contentType: 'application/json',
-                data: JSON.stringify(vehiculo)
-            }).done(function(data) {
-                updateFieldsVehiculo(data);
-                alert('Vehiculo Actualizado!!!');
-            })
-            .error(function(data) {
-                alert('Error Actualizado Vehiculo!!!');
-            });
-	});
-        
-        $('#actualizarContribuyente').click(function() {
-        [* Aqui es dinámico *]
-        	[%for(view in app.frontend.views) {%]
-        		[%for(control in view.graphicControls) {%]
-        			[% if(control.name == 'Contribuyente') {%]
-        			var contribuyente = {id:$('#idcontribuyente').val()
-        				[%for(subcontrol in control.graphicControls) {%]
-        					,[%= subcontrol.name.replace(' ', '').toLowerCase() %]:$('#[%= subcontrol.name.replace(' ', '').toLowerCase() %]').val()
-        				[%}%]
-        				};
-        			[%}%]
-        		[%}%]
-        	[%}%]
-        [* / Aqui es dinámico *]
-            $.ajax({
-                url: 'http://localhost:8080/VehicleTax/webresources/Service',
-                type: 'PUT',
-                contentType: 'application/json',
-                data: JSON.stringify(contribuyente)
-            }).done(function(data) {
+    $('#buscarVehiculo').click(function() {
+    [* Aqui es dinámico *]
+        [%for(view in app.frontend.views) {%]
+    		[%for(control in view.graphicControls) {%]
+    			[% if(control.name == 'Atributos') {%]
+    				[%for(subcontrol in control.graphicControls) {%]
+    	$.get('http://localhost:8080/VehicleTax/webresources/Service/' + $('#[%= subcontrol.name.replace(' ', '').toLowerCase() %]').val(), function(data) {
+    				[% break; }%]
+    			[%}%]
+    		[%}%]
+    	[%}%]
+    [* / Aqui es dinámico *]
+            updateFieldsVehiculo(data);
+            $('#actualizarVehiculo').removeAttr('disabled');
+            $.get('http://localhost:8080/VehicleTax/webresources/Service/Contribuyente/' + $('#idcontribuyente').val(), function(data) {
                 updateFieldsContribuyente(data);
-                alert('Contribuyente Actualizado!!!');
-            })
-            .error(function(data) {
-                alert('Error Actualizado Contribuyente!!!');
+                $('#actualizarContribuyente').removeAttr('disabled');
             });
+        });
 	});
         
-        $('#calcularLiquidacion').click(function() {
-            var exp = $('#formula').val();
-            var result = replaceExpression(exp);
-            $('#resultado').val(result);
-            $('#pagarLiquidacion').removeAttr('disabled');
+    $('#actualizarVehiculo').click(function() {
+    [* Aqui es dinámico *]
+        [%for(view in app.frontend.views) {%]
+    		[%for(control in view.graphicControls) {%]
+    			[% if(control.name == 'Atributos') {%]
+    			var vehiculo = {id:$('#idvehiculo').val()
+    				[%for(subcontrol in control.graphicControls) {%]
+    					,[%= subcontrol.name.replace(' ', '').toLowerCase() %]:$('#[%= subcontrol.name.replace(' ', '').toLowerCase() %]').val()
+    				[%}%]
+    				,idcontribuyente:$('#idcontribuyente').val()};
+    			[%}%]
+    		[%}%]
+    	[%}%]
+    [* / Aqui es dinámico *]
+        $.ajax({
+            url: 'http://localhost:8080/VehicleTax/webresources/Service',
+            type: 'POST',
+            contentType: 'application/json',
+            data: JSON.stringify(vehiculo)
+        }).done(function(data) {
+            updateFieldsVehiculo(data);
+            alert('Vehiculo Actualizado!!!');
+        })
+        .error(function(data) {
+            alert('Error Actualizado Vehiculo!!!');
+        });
 	});
         
-        $('#pagarLiquidacion').click(function() {
-            var pago = {idvehiculo:$('#idvehiculo').val(),valor:$('#resultado').val(),fecha:getCurrentDateAsString()};
-            $.ajax({
-                url: 'http://localhost:8080/VehicleTax/webresources/Service/Pago',
-                type: 'POST',
-                contentType: 'application/json',
-                data: JSON.stringify(pago)
-            }).done(function(data) {
-                $('#generarComprobante').removeAttr('disabled');
-                $('#actualizarVehiculo').attr("disabled", "disabled");
-                $('#actualizarContribuyente').attr("disabled", "disabled");
-                $('#pagarLiquidacion').attr("disabled", "disabled");
-                $('#resultado').val('');
-                clearFieldsVehiculo();
-                clearFieldsContribuyente();
-                alert('Pago Realizado con Exito!!!');
-            })
-            .error(function(data) {
-                alert('Error en Realizando Pago!!!');
-            });
+    $('#actualizarContribuyente').click(function() {
+    [* Aqui es dinámico *]
+    	[%for(view in app.frontend.views) {%]
+    		[%for(control in view.graphicControls) {%]
+    			[% if(control.name == 'Contribuyente') {%]
+    			var contribuyente = {id:$('#idcontribuyente').val()
+    				[%for(subcontrol in control.graphicControls) {%]
+    					,[%= subcontrol.name.replace(' ', '').toLowerCase() %]:$('#[%= subcontrol.name.replace(' ', '').toLowerCase() %]').val()
+    				[%}%]
+    				};
+    			[%}%]
+    		[%}%]
+    	[%}%]
+    [* / Aqui es dinámico *]
+        $.ajax({
+            url: 'http://localhost:8080/VehicleTax/webresources/Service',
+            type: 'PUT',
+            contentType: 'application/json',
+            data: JSON.stringify(contribuyente)
+        }).done(function(data) {
+            updateFieldsContribuyente(data);
+            alert('Contribuyente Actualizado!!!');
+        })
+        .error(function(data) {
+            alert('Error Actualizado Contribuyente!!!');
+        });
 	});
         
-        $('#consultarPagados').click(function() {
-            $.get('http://localhost:8080/VehicleTax/webresources/Service/Pago/Realizados', function(data) {
-                addRowsToReporTable(data);
-            });
+    $('#calcularLiquidacion').click(function() {
+        var exp = $('#formula').val();
+        var result = replaceExpression(exp);
+        $('#resultado').val(result);
+        $('#pagarLiquidacion').removeAttr('disabled');
 	});
         
-        $('#consultarPendientes').click(function() {
-            $.get('http://localhost:8080/VehicleTax/webresources/Service/Pago/Pendientes', function(data) {
-                addRowsToReporTable(data);
-            });
+    $('#pagarLiquidacion').click(function() {
+        var pago = {idvehiculo:$('#idvehiculo').val(),valor:$('#resultado').val(),fecha:getCurrentDateAsString()};
+        $.ajax({
+            url: 'http://localhost:8080/VehicleTax/webresources/Service/Pago',
+            type: 'POST',
+            contentType: 'application/json',
+            data: JSON.stringify(pago)
+        }).done(function(data) {
+            $('#generarComprobante').removeAttr('disabled');
+            $('#actualizarVehiculo').attr("disabled", "disabled");
+            $('#actualizarContribuyente').attr("disabled", "disabled");
+            $('#pagarLiquidacion').attr("disabled", "disabled");
+            $('#resultado').val('');
+            clearFieldsVehiculo();
+            clearFieldsContribuyente();
+            alert('Pago Realizado con Exito!!!');
+        })
+        .error(function(data) {
+            alert('Error en Realizando Pago!!!');
+        });
 	});
         
-        $('#generarComprobante').click(function() {
-            alert('comprobante');
+    $('#consultarPagados').click(function() {
+        $.get('http://localhost:8080/VehicleTax/webresources/Service/Pago/Realizados', function(data) {
+            addRowsToReporTable(data);
+        });
 	});
         
-        function replaceExpression(exp) {
-            var finalExp = exp;
-            console.log('Inicio: ' + finalExp);
-            var match = XRegExp.matchChain(exp, [XRegExp('(?is)<.*?>'), /\w*/]);
-            for(var i = 0; i < match.length; i++) {
-                if(match[i].length > 0) {
-                    finalExp = finalExp.replace('<' + match[i] + '>', GetValue(match[i]));
-                }
+    $('#consultarPendientes').click(function() {
+        $.get('http://localhost:8080/VehicleTax/webresources/Service/Pago/Pendientes', function(data) {
+            addRowsToReporTable(data);
+        });
+	});
+        
+    $('#generarComprobante').click(function() {
+        createPDFDocument();
+	});
+        
+    function replaceExpression(exp) {
+        var finalExp = exp;
+        console.log('Inicio: ' + finalExp);
+        var match = XRegExp.matchChain(exp, [XRegExp('(?is)<.*?>'), /\w*/]);
+        for(var i = 0; i < match.length; i++) {
+            if(match[i].length > 0) {
+                finalExp = finalExp.replace('<' + match[i] + '>', GetValue(match[i]));
             }
-            return eval(finalExp);
         }
+        return eval(finalExp);
+    }
+    
+    function GetValue(expression) {
+        return $('#'+expression).val();
+    }
         
-        function GetValue(expression) {
-            return $('#'+expression).val();
-        }
+    function updateFieldsVehiculo(data) {
+        $('#idvehiculo').val(data.id);
+    [* Aqui es dinámico *]
+    	[%for(view in app.frontend.views) {%]
+    		[%for(control in view.graphicControls) {%]
+    			[% if(control.name == 'Atributos') {%]
+    				[%for(subcontrol in control.graphicControls) {%]
+    	$('#[%= subcontrol.name.replace(' ', '').toLowerCase() %]').val(data.[%= subcontrol.name.replace(' ', '').toLowerCase() %]);
+    				[%}%]
+    			[%}%]
+    		[%}%]
+    	[%}%]
+    [* / Aqui es dinámico *]
+        $('#idcontribuyente').val(data.idcontribuyente);
+    }
         
-        function updateFieldsVehiculo(data) {
-            $('#idvehiculo').val(data.id);
-        [* Aqui es dinámico *]
-        	[%for(view in app.frontend.views) {%]
-        		[%for(control in view.graphicControls) {%]
-        			[% if(control.name == 'Atributos') {%]
-        				[%for(subcontrol in control.graphicControls) {%]
-        	$('#[%= subcontrol.name.replace(' ', '').toLowerCase() %]').val(data.[%= subcontrol.name.replace(' ', '').toLowerCase() %]);
-        				[%}%]
-        			[%}%]
-        		[%}%]
-        	[%}%]
-        [* / Aqui es dinámico *]
-            $('#idcontribuyente').val(data.idcontribuyente);
-        }
+    function clearFieldsVehiculo() {
+        $('#idvehiculo').val('');
+    [* Aqui es dinámico *]
+    	[%for(view in app.frontend.views) {%]
+    		[%for(control in view.graphicControls) {%]
+    			[% if(control.name == 'Atributos') {%]
+    				[%for(subcontrol in control.graphicControls) {%]
+    	$('#[%= subcontrol.name.replace(' ', '').toLowerCase() %]').val('');
+    				[%}%]
+    			[%}%]
+    		[%}%]
+    	[%}%]
+    [* / Aqui es dinámico *]
+        $('#idcontribuyente').val('');
+    }
         
-        function clearFieldsVehiculo() {
-            $('#idvehiculo').val('');
-        [* Aqui es dinámico *]
-        	[%for(view in app.frontend.views) {%]
-        		[%for(control in view.graphicControls) {%]
-        			[% if(control.name == 'Atributos') {%]
-        				[%for(subcontrol in control.graphicControls) {%]
-        	$('#[%= subcontrol.name.replace(' ', '').toLowerCase() %]').val('');
-        				[%}%]
-        			[%}%]
-        		[%}%]
-        	[%}%]
-        [* / Aqui es dinámico *]
-            $('#idcontribuyente').val('');
-        }
+    function updateFieldsContribuyente(data) {
+    [* Aqui es dinámico *]
+    	[%for(view in app.frontend.views) {%]
+    		[%for(control in view.graphicControls) {%]
+    			[% if(control.name == 'Contribuyente') {%]
+    				[%for(subcontrol in control.graphicControls) {%]
+    	$('#[%= subcontrol.name.replace(' ', '').toLowerCase() %]').val(data.[%= subcontrol.name.replace(' ', '').toLowerCase() %]);
+    				[%}%]
+    			[%}%]
+    		[%}%]
+    	[%}%]
+    [* / Aqui es dinámico *]
+    }
         
-        function updateFieldsContribuyente(data) {
-        [* Aqui es dinámico *]
-        	[%for(view in app.frontend.views) {%]
-        		[%for(control in view.graphicControls) {%]
-        			[% if(control.name == 'Contribuyente') {%]
-        				[%for(subcontrol in control.graphicControls) {%]
-        	$('#[%= subcontrol.name.replace(' ', '').toLowerCase() %]').val(data.[%= subcontrol.name.replace(' ', '').toLowerCase() %]);
-        				[%}%]
-        			[%}%]
-        		[%}%]
-        	[%}%]
-        [* / Aqui es dinámico *]
-        }
+    function clearFieldsContribuyente() {
+    [* Aqui es dinámico *]
+    	[%for(view in app.frontend.views) {%]
+    		[%for(control in view.graphicControls) {%]
+    			[% if(control.name == 'Contribuyente') {%]
+    				[%for(subcontrol in control.graphicControls) {%]
+    	$('#[%= subcontrol.name.replace(' ', '').toLowerCase() %]').val('');
+    				[%}%]
+    			[%}%]
+    		[%}%]
+    	[%}%]
+    [* / Aqui es dinámico *]
+    }
         
-        function clearFieldsContribuyente() {
-        [* Aqui es dinámico *]
-        	[%for(view in app.frontend.views) {%]
-        		[%for(control in view.graphicControls) {%]
-        			[% if(control.name == 'Contribuyente') {%]
-        				[%for(subcontrol in control.graphicControls) {%]
-        	$('#[%= subcontrol.name.replace(' ', '').toLowerCase() %]').val('');
-        				[%}%]
-        			[%}%]
-        		[%}%]
-        	[%}%]
-        [* / Aqui es dinámico *]
-        }
-        
-        function getCurrentDateAsString() {
-            var today = new Date();
-            return (today.getDate() + '/' + (today.getMonth() + 1) + '/' + today.getFullYear()).toString();
-        }
-        
-        function addRowsToReporTable(data) {
-            $('#tablaReporte tr:gt(0)').remove();
-            $.each(data, function(index, value) {
-                var row = '<tr>';
-                $.each(value, function(subindex, subvalue) {
-                    row = row + '<td>' + subvalue + '</td>';
-                });
-                row = row + '</tr>';
-                $('#tablaReporte').append(row);
+    function getCurrentDateAsString() {
+        var today = new Date();
+        return (today.getDate() + '/' + (today.getMonth() + 1) + '/' + today.getFullYear()).toString();
+    }
+    
+    function addRowsToReporTable(data) {
+        $('#tablaReporte tr:gt(0)').remove();
+        $.each(data, function(index, value) {
+            var row = '<tr>';
+            $.each(value, function(subindex, subvalue) {
+                row = row + '<td>' + subvalue + '</td>';
             });
-        }
+            row = row + '</tr>';
+            $('#tablaReporte').append(row);
+        });
+    }
+        
+    function createPDFDocument() {
+		var doc = new jsPDF();
+		doc.text(20, 20, 'Hello world David!');
+		doc.save('Test.pdf');
+	}
 });
