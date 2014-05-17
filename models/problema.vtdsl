@@ -28,7 +28,7 @@ DSL {
 
 
 		Formula {
-		  valorPagar = ("Avaluo Comercial" * (Cilindraje / 1000 / 100)) * (1 - "Descuento pronto pago") * (1 - (AnioPago - Modelo)/100);
+		  valorPagar = ("Avaluo Comercial" * (Cilindraje / 1000 / 100)) * (1 - "Descuento pronto pago") * (1 - ("Anio de vigencia" - Modelo)/100);
 		}
 
 	}
