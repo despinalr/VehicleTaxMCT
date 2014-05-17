@@ -224,7 +224,28 @@ $(document).on('ready', function() {
         
     function createPDFDocument() {
 		var doc = new jsPDF();
-		doc.text(20, 20, 'Hello world David!');
+		[% var index = 20; %]
+		[%for(view in app.frontend.views) {%]
+    		[%for(control in view.graphicControls) {%]
+    			[% if(control.name == 'Atributos') {%]
+    				[%for(subcontrol in control.graphicControls) {%]
+    	doc.text(20, [%= index %], '[%= subcontrol.name %]: ' + $('#[%= subcontrol.name.replace(' ', '').toLowerCase() %]').val());
+    				[% index = index + 10; }%]
+    			[%}%]
+    		[%}%]
+    	[%}%]
+    	[% index = index + 20; %]
+    	[%for(view in app.frontend.views) {%]
+    		[%for(control in view.graphicControls) {%]
+    			[% if(control.name == 'Contribuyente') {%]
+    				[%for(subcontrol in control.graphicControls) {%]
+    	doc.text(20, [%= index %], '[%= subcontrol.name %]: ' + $('#[%= subcontrol.name.replace(' ', '').toLowerCase() %]').val());
+    				[% index = index + 10; }%]
+    			[%}%]
+    		[%}%]
+    	[%}%]
+    	[% index = index + 20; %]
+    	doc.text(20, [%= index %], 'Valor a Pagar: ' + $('#resultado').val());
 		doc.save('Test.pdf');
 	}
 });
