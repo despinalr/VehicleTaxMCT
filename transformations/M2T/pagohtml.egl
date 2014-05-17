@@ -25,7 +25,7 @@
 		        						</tr><tr>
 		        					[%}%]
 		        					[% if(subcontrol.hasProperty('items')) {%]
-		        	<td>[%= subcontrol.name %]: </td><td><select>
+		        	<td>[%= subcontrol.name %]: </td><td><select id='[%= subcontrol.name.replace(' ', '').toLowerCase() %]'>
 		        						[% for(selectOption in subcontrol.items) {%]
 		        	<option value='[%= selectOption%]'>[%= selectOption%]</option>
 		        						[%}%]
@@ -49,17 +49,31 @@
             <table>
                 <tr>
                 [* Aqui es dinámico *]
-                    <td>Identificacion: </td><td><input type='text' id='identificacion'></td>
-                    <td>Direccion: </td><td><input type='text' id='direccion'></td>
-                [* / Aqui es dinámico *]
-                    <td><button id='actualizarContribuyente' disabled>Actualizar</button></td>
-                </tr>
-                <tr>
-                [* Aqui es dinámico *]
-                    <td>Nombre: </td><td><input type='text' id='nombre'></td>
-                    <td>Ciudad: </td><td><input type='text' id='ciudad'></td>
-                [* / Aqui es dinámico *]
-                </tr>
+                [%for(view in app.frontend.views) {%]
+	        		[%for(control in view.graphicControls) {%]
+	        			[% if(control.name == 'Contribuyente') { 
+	        				var index = 0;%]
+	        				[%for(subcontrol in control.graphicControls) { 
+	        					if(index == 3) { 
+	        						index = 0; %]
+	        						</tr><tr>
+	        					[%}%]
+	        					[% if(subcontrol.hasProperty('items')) {%]
+	        	<td>[%= subcontrol.name %]: </td><td><select id='[%= subcontrol.name.replace(' ', '').toLowerCase() %]'>
+	        						[% for(selectOption in subcontrol.items) {%]
+	        	<option value='[%= selectOption%]'>[%= selectOption%]</option>
+	        						[%}%]
+	        	</select></td>
+	        					[%} else {%]
+	        	<td>[%= subcontrol.name %]: </td><td><input type='text' id='[%= subcontrol.name.replace(' ', '').toLowerCase() %]'></td>
+	        					[%} index = index + 1;%]
+	        				[%}%]
+	        			[%}%]
+	        		[%}%]
+	        	[%}%]
+	        	<td><button id='actualizarContribuyente' disabled>Actualizar</button></td>
+	        	</tr>
+	        	[* / Aqui es dinámico *]
             </table>
         </div>
         <br/>
@@ -69,9 +83,44 @@
             <table border='1' id='liquidacion'>
                 <tr><td>Item</td><td>Valor</td></tr>
             [* Aqui es dinámico *]
-                <tr><td>Valor Base</td><td><input type='text' id='valorbase'></td></tr>
-                <tr><td>Derechos Semaforizacion</td><td><input type='text' id='derechos'></td></tr>
-                <tr><td>Descuento</td><td><input type='text' id='descuento'></td></tr>
+	        	[%for(view in app.frontend.views) {%]
+	        		[%for(control in view.graphicControls) {%]
+	        			[% if(control.name == 'OperandosBase') {%]
+	        				[%for(subcontrol in control.graphicControls) {%]
+	        					[% if(subcontrol.hasProperty('items')) {%]
+	        	<tr><td>[%= subcontrol.name %]: </td><td><select id='[%= subcontrol.name.replace(' ', '').toLowerCase() %]'>
+	        						[% for(selectOption in subcontrol.items) {%]
+	        	<option value='[%= selectOption%]'>[%= selectOption%]</option>
+	        						[%}%]
+	        	</select></td></tr>
+	        					[%} else {%]
+	        	<tr><td>[%= subcontrol.name %]: </td><td><input type='text' id='[%= subcontrol.name.replace(' ', '').toLowerCase() %]'></td></tr>
+	        					[%}%]
+	        				[%}%]
+	        			[%}%]
+	        		[%}%]
+	        	[%}%]
+	        	[%for(view in app.frontend.views) {%]
+	        		[%for(control in view.graphicControls) {%]
+	        			[% if(control.name == 'OperandosAdicionales') {%]
+	        				[%for(subcontrol in control.graphicControls) {%]
+	        					[% if(subcontrol.hasProperty('items')) {%]
+	        	<tr><td>[%= subcontrol.name %]: </td><td><select id='[%= subcontrol.name.replace(' ', '').toLowerCase() %]'>
+	        						[% for(selectOption in subcontrol.items) {%]
+	        	<option value='[%= selectOption%]'>[%= selectOption%]</option>
+	        						[%}%]
+	        	</select></td></tr>
+	        					[%} else {
+	        					if(subcontrol.type.name == 'Label') {%]
+	        	<tr><td>[%= subcontrol.name %]: </td><td><input type='text' id='[%= subcontrol.name.replace(' ', '').toLowerCase() %]' value='[%= subcontrol.text %]' disabled></td></tr>
+	        					[%} else {%]
+	        	<tr><td>[%= subcontrol.name %]: </td><td><input type='text' id='[%= subcontrol.name.replace(' ', '').toLowerCase() %]'></td></tr>
+	        					[%}%]
+	        				[%}%]
+	        			[%}%]
+	        		[%}%]
+	        	[%}%]
+	        	[%}%]
             [* / Aqui es dinámico *]
             </table>
             <br/>
