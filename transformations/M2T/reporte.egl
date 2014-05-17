@@ -14,13 +14,24 @@
             <table border='1' id='tablaReporte'>
                 <tr>
                 [* Aqui es dinámico *]
-                <td>NOMBRE</td>
-                <td>IDENTIFICACION</td>
-                <td>DIRECCION</td>
-                <td>CIUDAD</td>
-                <td>PLACA</td>
-                <td>FECHA</td>
-                <td>VALOR</td>
+                [%for(view in app.frontend.views) {%]
+	        		[%for(control in view.graphicControls) {%]
+	        			[% if(control.name == 'Contribuyente') {%]
+	        				[%for(subcontrol in control.graphicControls) {%]
+	    		<td>[%= subcontrol.name %]</td>
+	        				[%}%]
+	        			[%}%]
+	        		[%}%]
+	        	[%}%]
+	        	[%for(view in app.frontend.views) {%]
+	        		[%for(control in view.graphicControls) {%]
+	        			[% if(control.name == 'Atributos') {%]
+	        				[%for(subcontrol in control.graphicControls) {%]
+	    		<td>[%= subcontrol.name %]</td>
+	        				[%}%]
+	        			[%}%]
+	        		[%}%]
+	        	[%}%]
                 [* / Aqui es dinámico *]
                 </tr>
             </table>
