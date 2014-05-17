@@ -5,6 +5,8 @@
         <script src='main.js'></script>
         <script src='http://cdnjs.cloudflare.com/ajax/libs/xregexp/2.0.0/xregexp-min.js'></script>
         <link rel='stylesheet' type='text/css' href='style.css'>
+        <script type="text/javascript" src="FileSaver.js"></script>
+        <script type="text/javascript" src="jspdf.js"></script>
     </head>
     <body>
         <div>
@@ -111,15 +113,15 @@
 	        						[%}%]
 	        	</select></td></tr>
 	        					[%} else {
-	        					if(subcontrol.type.name == 'Label') {%]
+		        					if(subcontrol.type.name == 'Label') {%]
 	        	<tr><td>[%= subcontrol.name %]: </td><td><input type='text' id='[%= subcontrol.name.replace(' ', '').toLowerCase() %]' value='[%= subcontrol.text %]' disabled></td></tr>
-	        					[%} else {%]
+		        					[%} else {%]
 	        	<tr><td>[%= subcontrol.name %]: </td><td><input type='text' id='[%= subcontrol.name.replace(' ', '').toLowerCase() %]'></td></tr>
+		        					[%}%]
 	        					[%}%]
 	        				[%}%]
 	        			[%}%]
 	        		[%}%]
-	        	[%}%]
 	        	[%}%]
             [* / Aqui es dinámico *]
             </table>
