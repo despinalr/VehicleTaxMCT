@@ -129,7 +129,15 @@
             <button id='calcularLiquidacion'>Calcular</button>
             <br/><br/>
             [* Aqui es dinámico *]
-            <h1>Formula: </h1><input type='text' id='formula' value='<semaforizacion> + <cilindraje> - <avaluocomercial>' size='100'>
+            [%for(view in app.frontend.views) {%]
+	        		[%for(control in view.graphicControls) {%]
+	        			[% if(control.name == 'Formula aplicada') {%]
+	        				[%for(subcontrol in control.graphicControls) {%]
+	        					<h1>Formula: </h1><input type='text' id='formula' value='[%= subcontrol.text%]' size='100'>
+	        				[%}%]
+	        			[%}%]
+	        		[%}%]
+	        	[%}%]
             [* / Aqui es dinámico *]
             <br/><br/>
             <table>
