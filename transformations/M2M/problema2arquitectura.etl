@@ -8,13 +8,30 @@ rule Model2Application
 		b.frontend = new OUT!FrontEnd;
 		b.backend = new OUT!BackEnd;
 		
+		var registro = a.entidades.selectOne(x | x.isTypeOf(IN!Registro));
+		var contacto = a.entidades.selectOne(x | x.isTypeOf(IN!Contacto));
+		
 		b.frontend.name = 'co.edu.uniandes.miso4202.project.view';
-		b.frontend.views.add(a.entidades.selectOne(x | x.isKindOf(IN!Registro)).equivalent());
-		b.frontend.views.add(a.entidades.selectOne(x | x.isKindOf(IN!Contacto)).equivalent());			
+		b.frontend.views.add(registro.equivalent());
+		b.frontend.views.add(contacto.equivalent());			
 		
 		b.backend.name = 'co.edu.uniandes.miso4202.project.logic';
-		--b.backend.entities ::= a.entidades;
+		
+		a.entidades.collect(x | b.backend.entities.add(x.toEntity()));
+		
+		b.backend.services.add(crearServicio(registro));
+		b.backend.logics.add(crearLogica(registro));
+		
 	}	
+	
+operation IN!AtributoSimple toParameter():OUT!Parameter{
+	var p = new OUT!Parameter;
+	p.name = self.nombre;
+	p.type = self.tipo;
+	return p;
+}
+
+
 
 @lazy
 rule Registro2View
@@ -30,12 +47,7 @@ rule Registro2View
 		var clave:IN!Objeto = r.propiedades.selectOne(x | x.isKindOf(IN!Objeto) and x.nombre = 'Clave');
 		var atributos:IN!Objeto = r.propiedades.selectOne(x | x.isKindOf(IN!Objeto) and x.nombre = 'Atributos');
 		var operandos:IN!Objeto = r.propiedades.selectOne(x | x.isKindOf(IN!Objeto) and x.nombre = 'OperandosBase');
-		var adicionales:IN!Objeto = r.propiedades.selectOne(x | x.isKindOf(IN!Objeto) and x.nombre = 'OperandosAdicionales');
-		
-		
-		
-		
-		--r.propiedades.collect(x | x.nombre).println();
+		var adicionales:IN!Objeto = r.propiedades.selectOne(x | x.isKindOf(IN!Objeto) and x.nombre = 'OperandosAdicionales');		
 		
 		--Campos seccion 1
 		sec1.name = atributos.nombre;
@@ -49,6 +61,7 @@ rule Registro2View
 		sec3.name = adicionales.nombre;
 		adicionales.propiedades.select(x | x.isKindOf(IN!Atributo)).collect(a | sec3.graphicControls.add(a.toInput()));		
 		
+		--Seccion 4 donde esta la formula a aplicar para el valor a pagar
 		sec4.name = 'Formula aplicada';
 		var lFormula = new OUT!Label;
 		lFormula.name = 'Formula';
@@ -63,36 +76,7 @@ rule Registro2View
 				
 	}
 	
-operation IN!Expression toText():String{
-	var acum:String = '';
-	if(self.isTypeOf(IN!Multi) or self.isTypeOf(IN!Div) or self.isTypeOf(IN!Plus) or self.isTypeOf(IN!Minus)){
-		acum = '(' + acum + self.left.toText() + self.toSign() + self.right.toText() + ')';
-	}else{
-		if(self.isTypeOf(IN!NumberLiteral)){
-			acum = acum + self.value.toString() + '';
-		}else{
-			acum = acum + '<' + self.value.toString().toId() + '>';
-		}
-		
-	}
-	return acum;
-}
 
-operation IN!Expression toSign():String{
-	var sign:String;
-	if(self.isTypeOf(IN!Plus)){
-		sign = '+';
-	}else if(self.isTypeOf(IN!Minus)){
-		sign = '-';
-	}else if(self.isTypeOf(IN!Multi)){
-		sign = '*';
-	}else if(self.isTypeOf(IN!Div)){
-		sign = '/';
-	}else{
-		sign = '';
-	}
-	return sign;
-}
 
 @lazy
 rule Contacto2View
@@ -119,48 +103,6 @@ rule Entidad2Entity
 			b.methods.add(p.toGetMethod());
 		}
 	}	
-	
-operation IN!Atributo toGetMethod():OUT!Method{
-	var m = new OUT!Method;
-	var parts:Sequence = self.nombre.split(' ');
-	parts.println();
-	var name:String = '';
-	for(p in parts){
-		name = name.concat(p.firstToUpperCase());
-	} 
-	m.name = 'get' + name;
-	return m;
-}
-
-operation IN!Entidad toView():OUT!View{
-	var v = new OUT!View;
-	v.name = self.nombre + 'View.html';
-	v.graphicControls.addAll(self.propiedades.select(x | x.isKindOf(IN!Atributo)).collect(y | y.toInput()));
-	return v;
-}
-
-operation IN!Atributo toInput():OUT!GraphicControl{
-	var gc:OUT!GraphicControl;
-	if(self.isKindOf(IN!AtributoSimple)){
-		gc = new OUT!TextBox;
-		gc.type = self.tipo.toInputType();
-	}else if(self.isKindOf(IN!AtributoInicializado)){
-		gc = new OUT!Label;
-		gc.text = self.valor.toString();
-	}else if(self.isKindOf(IN!AtributoListaString) or self.isKindOf(IN!AtributoListaInteger)){
-		gc = new OUT!DropDownList;
-		gc.items.addAll(self.valores.collect(x | x.toString()));
-	}else{
-		gc = new OUT!TextBox;
-	}
-	gc.name = self.nombre;
-	return gc;
-}
-	--transform a:IN!Entidad
-	--to b:OUT!View{
-	--	b.name = a.nombre + 'View.html';	
-	--	b.graphicControls ::= a.propiedades;	
-	--}
 
 @lazy	
 rule Entidad2Controller
@@ -231,3 +173,157 @@ operation String toInputType():String{
 		return 'text';
 	}
 }	
+operation IN!Expression toText():String{
+	var acum:String = '';
+	if(self.isTypeOf(IN!Multi) or self.isTypeOf(IN!Div) or self.isTypeOf(IN!Plus) or self.isTypeOf(IN!Minus)){
+		acum = '(' + acum + self.left.toText() + self.toSign() + self.right.toText() + ')';
+	}else{
+		if(self.isTypeOf(IN!NumberLiteral)){
+			acum = acum + self.value.toString() + '';
+		}else{
+			acum = acum + '<' + self.value.toString().toId() + '>';
+		}
+		
+	}
+	return acum;
+}
+
+operation IN!Expression toSign():String{
+	var sign:String;
+	if(self.isTypeOf(IN!Plus)){
+		sign = '+';
+	}else if(self.isTypeOf(IN!Minus)){
+		sign = '-';
+	}else if(self.isTypeOf(IN!Multi)){
+		sign = '*';
+	}else if(self.isTypeOf(IN!Div)){
+		sign = '/';
+	}else{
+		sign = '';
+	}
+	return sign;
+}
+operation IN!Atributo toGetMethod():OUT!Method{
+	var m = new OUT!Method;
+	var parts:Sequence = self.nombre.split(' ');
+	parts.println();
+	var name:String = '';
+	for(p in parts){
+		name = name.concat(p.firstToUpperCase());
+	} 
+	m.name = 'get' + name;
+	return m;
+}
+
+operation IN!Entidad toView():OUT!View{
+	var v = new OUT!View;
+	v.name = self.nombre + 'View.html';
+	v.graphicControls.addAll(self.propiedades.select(x | x.isKindOf(IN!Atributo)).collect(y | y.toInput()));
+	return v;
+}
+
+operation IN!Atributo toInput():OUT!GraphicControl{
+	var gc:OUT!GraphicControl;
+	if(self.isKindOf(IN!AtributoSimple)){
+		gc = new OUT!TextBox;
+		gc.type = self.tipo.toInputType();
+	}else if(self.isKindOf(IN!AtributoInicializado)){
+		gc = new OUT!Label;
+		gc.text = self.valor.toString();
+	}else if(self.isKindOf(IN!AtributoListaString) or self.isKindOf(IN!AtributoListaInteger)){
+		gc = new OUT!DropDownList;
+		gc.items.addAll(self.valores.collect(x | x.toString()));
+	}else{
+		gc = new OUT!TextBox;
+	}
+	gc.name = self.nombre;
+	return gc;
+}
+operation IN!Registro toEntity():OUT!Entity{
+	var vehiculo = new OUT!Entity;
+	
+	vehiculo.name = 'Vehiculo';
+	
+	var clave = self.propiedades.selectOne(x | x.isTypeOf(IN!Objeto) and x.nombre = 'Clave');
+	
+	clave.propiedades.select(x | x.isTypeOf(IN!AtributoSimple)).collect(x | vehiculo.attributes.add(x.toAttribute()));
+	
+	var atributos = self.propiedades.selectOne(x | x.isTypeOf(IN!Objeto) and x.nombre = 'Atributos');
+	
+	atributos.propiedades.select(x | x.isTypeOf(IN!AtributoSimple) or x.isKindOf(IN!AtributoLista)).collect(x | vehiculo.attributes.add(x.toAttribute()));
+		
+	return vehiculo;
+}
+
+operation IN!AtributoSimple toAttribute():OUT!Attribute{
+	var attr = new OUT!Attribute;
+	
+	attr.name = self.nombre;
+	attr.type = self.tipo;
+	
+	return attr;
+}
+
+operation IN!AtributoLista toAttribute():OUT!Attribute{
+	var attr = new OUT!Attribute;
+	
+	attr.name = self.nombre;
+	if(self.isTypeOf(IN!AtributoListaInteger)){
+		attr.type = 'int';
+	}else{
+		attr.type = 'String';
+	}	
+	
+	return attr;
+}
+operation IN!Entidad toEntity():OUT!Entity{
+	if(self.isTypeOf(IN!Registro)){
+		return self.toEntity();
+	}else{
+		
+		var entity = new OUT!Entity;
+		
+		entity.name = self.nombre;
+		
+		self.propiedades.select(x | x.isTypeOf(IN!AtributoSimple) or x.isTypeOf(IN!AtributoLista)).collect(x | entity.attributes.add(x.toAttribute()));
+		
+		return entity;
+		
+		
+	}
+}
+operation crearServicio(entidad:Entidad):OUT!Service{
+	
+	var service = new OUT!Service;
+	service.name = 'Service';
+	
+	var clave = entidad.propiedades.selectOne(x | x.isTypeOf(IN!Objeto) and x.nombre = 'Clave');
+	
+	var metodo = new OUT!Method;
+	
+	metodo.name = 'get' + entidad.nombre.firstToUpperCase();
+	metodo.returntype = entidad.nombre.firstToUpperCase();		
+	
+	
+	clave.propiedades.select(x | x.isTypeOf(IN!AtributoSimple)).collect(x | metodo.parameters.add(x.toParameter()));
+	service.methods.add(metodo);
+	return service;
+}
+
+operation crearLogica(entidad:Entidad):OUT!Logic{
+	
+	var logic = new OUT!Logic;
+	logic.name = 'Logic';
+	
+	var clave = entidad.propiedades.selectOne(x | x.isTypeOf(IN!Objeto) and x.nombre = 'Clave');
+	
+	var metodo = new OUT!Method;
+	
+	metodo.name = 'get' + entidad.nombre.firstToUpperCase();
+	metodo.returntype = entidad.nombre.firstToUpperCase();		
+	
+	
+	clave.propiedades.select(x | x.isTypeOf(IN!AtributoSimple)).collect(x | metodo.parameters.add(x.toParameter()));
+	logic.methods.add(metodo);
+	return logic;
+}

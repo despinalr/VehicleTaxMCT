@@ -1,9 +1,9 @@
 DSL {
 
-	Registro "Impuesto Vehicular" {
+	Registro "Vehiculo" {
 
 		Clave {
-		   "Placa Vehiculo" : String;
+		   "Placa" : String;
 		}
 
 		Atributos {
@@ -46,6 +46,6 @@ DSL {
 		"Placa vehiculo": String;
 		"Valor Pagado": Real;
 		"Numero de identificacion": String;
-		"Anio de vigencia": Int;
+		"Anio de vigencia": Int;		
 	}
 }
