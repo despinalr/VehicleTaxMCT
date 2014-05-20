@@ -30,6 +30,15 @@
           <items>2014</items>
           <items>2015</items>
         </graphicControls>
+        <graphicControls xsi:type="Arch:TextBox" name="Linea" type="text"/>
+        <graphicControls xsi:type="Arch:DropDownList" name="Modelo">
+          <items>2010</items>
+          <items>2011</items>
+          <items>2012</items>
+          <items>2013</items>
+          <items>2014</items>
+          <items>2015</items>
+        </graphicControls>
       </graphicControls>
       <graphicControls xsi:type="Arch:Div" name="OperandosAdicionales">
         <graphicControls xsi:type="Arch:Label" name="Semaforizacion" text="50000"/>
@@ -41,20 +50,11 @@
     </views>
     <views>
       <graphicControls xsi:type="Arch:Div" name="Contribuyente">
-        <graphicControls xsi:type="Arch:TextBox" name="apellidos" type="text"/>
-        <graphicControls xsi:type="Arch:TextBox" name="nombres" type="text"/>
-        <graphicControls xsi:type="Arch:DropDownList" name="Tipo de identificacion">
-          <items>CC</items>
-          <items>TI</items>
-          <items>PT</items>
-          <items>CE</items>
-        </graphicControls>
+        <graphicControls xsi:type="Arch:TextBox" name="Apellidos" type="text"/>
+        <graphicControls xsi:type="Arch:TextBox" name="Nombres" type="text"/>
+        <graphicControls xsi:type="Arch:TextBox" name="Tipo de identificacion" type="text"/>
         <graphicControls xsi:type="Arch:TextBox" name="Numero de identificacion" type="text"/>
-        <graphicControls xsi:type="Arch:DropDownList" name="calidad">
-          <items>propietario</items>
-          <items>poseedor</items>
-        </graphicControls>
-        <graphicControls xsi:type="Arch:TextBox" name="Correo Electronico" type="text"/>
+        <graphicControls xsi:type="Arch:TextBox" name="Email" type="text"/>
       </graphicControls>
     </views>
   </frontend>
@@ -76,16 +76,18 @@
       <attributes name="Modelo" type="int"/>
     </entities>
     <entities name="Contribuyente">
-      <attributes name="apellidos" type="String"/>
-      <attributes name="nombres" type="String"/>
+      <attributes name="Apellidos" type="String"/>
+      <attributes name="Nombres" type="String"/>
+      <attributes name="Tipo de identificacion" type="String"/>
       <attributes name="Numero de identificacion" type="String"/>
-      <attributes name="Correo Electronico" type="String"/>
+      <attributes name="Email" type="String"/>
     </entities>
     <entities name="Impuesto Anual">
       <attributes name="Placa vehiculo" type="String"/>
       <attributes name="Valor Pagado" type="Real"/>
       <attributes name="Numero de identificacion" type="String"/>
       <attributes name="Anio de vigencia" type="int"/>
+      <attributes name="Numero de identificacion" type="String"/>
     </entities>
   </backend>
 </Arch:Application>

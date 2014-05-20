@@ -31,6 +31,27 @@
         <valores>2014</valores>
         <valores>2015</valores>
       </propiedades>
+      <propiedades xsi:type="vtdsl:AtributoSimple" nombre="Linea" tipo="String"/>
+      <propiedades xsi:type="vtdsl:AtributoListaInteger" nombre="Modelo">
+        <valores>2010</valores>
+        <valores>2011</valores>
+        <valores>2012</valores>
+        <valores>2013</valores>
+        <valores>2014</valores>
+        <valores>2015</valores>
+      </propiedades>
+    </propiedades>
+    <propiedades nombre="OperandosBase" descripcion="rentas y deducciones">
+      <propiedades xsi:type="vtdsl:AtributoSimple" nombre="Avaluo Comercial" tipo="Real"/>
+      <propiedades xsi:type="vtdsl:AtributoSimple" nombre="Cilindraje" tipo="Real"/>
+      <propiedades xsi:type="vtdsl:AtributoListaInteger" nombre="Anio de vigencia">
+        <valores>2010</valores>
+        <valores>2011</valores>
+        <valores>2012</valores>
+        <valores>2013</valores>
+        <valores>2014</valores>
+        <valores>2015</valores>
+      </propiedades>
     </propiedades>
     <propiedades nombre="OperandosAdicionales">
       <propiedades xsi:type="vtdsl:AtributoInicializado" nombre="Semaforizacion" tipo="Real" valor="50000"/>
@@ -68,25 +89,17 @@
     </formula>
   </entidades>
   <entidades xsi:type="vtdsl:Contacto" nombre="Contribuyente">
-    <propiedades xsi:type="vtdsl:AtributoSimple" nombre="apellidos" tipo="String"/>
-    <propiedades xsi:type="vtdsl:AtributoSimple" nombre="nombres" tipo="String"/>
-    <propiedades xsi:type="vtdsl:AtributoListaString" nombre="Tipo de identificacion">
-      <valores>CC</valores>
-      <valores>TI</valores>
-      <valores>PT</valores>
-      <valores>CE</valores>
-    </propiedades>
+    <propiedades xsi:type="vtdsl:AtributoSimple" nombre="Apellidos" tipo="String"/>
+    <propiedades xsi:type="vtdsl:AtributoSimple" nombre="Nombres" tipo="String"/>
+    <propiedades xsi:type="vtdsl:AtributoSimple" nombre="Tipo de identificacion" tipo="String"/>
     <propiedades xsi:type="vtdsl:AtributoSimple" nombre="Numero de identificacion" tipo="String"/>
-    <propiedades xsi:type="vtdsl:AtributoListaString" nombre="calidad">
-      <valores>propietario</valores>
-      <valores>poseedor</valores>
-    </propiedades>
-    <propiedades xsi:type="vtdsl:AtributoSimple" nombre="Correo Electronico" tipo="String"/>
+    <propiedades xsi:type="vtdsl:AtributoSimple" nombre="Email" tipo="String"/>
   </entidades>
   <entidades xsi:type="vtdsl:Pago" nombre="Impuesto Anual">
     <propiedades xsi:type="vtdsl:AtributoSimple" nombre="Placa vehiculo" tipo="String"/>
     <propiedades xsi:type="vtdsl:AtributoSimple" nombre="Valor Pagado" tipo="Real"/>
     <propiedades xsi:type="vtdsl:AtributoSimple" nombre="Numero de identificacion" tipo="String"/>
     <propiedades xsi:type="vtdsl:AtributoSimple" nombre="Anio de vigencia" tipo="int"/>
+    <propiedades xsi:type="vtdsl:AtributoSimple" nombre="Numero de identificacion" tipo="String"/>
   </entidades>
 </vtdsl:Model>

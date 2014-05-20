@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <viewpoint:DAnalysis xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:description="http://www.eclipse.org/sirius/description/1.1.0" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmlns:style="http://www.eclipse.org/sirius/description/style/1.1.0" xmlns:viewpoint="http://www.eclipse.org/sirius/1.1.0" xsi:schemaLocation="http://www.eclipse.org/sirius/description/1.1.0 http://www.eclipse.org/sirius/1.1.0#//description http://www.eclipse.org/sirius/description/style/1.1.0 http://www.eclipse.org/sirius/1.1.0#//description/style" xmi:id="_OsjoYGzBEeOXMKeF0gOF6g" selectedViews="_yXJz0HTpEeO7kd1RfsmAcw" version="7.0.0">
-  <models href="prueba.mtc#/"/>
+  <models href="VehicleTaxMTC.mtc#/"/>
   <ownedViews xsi:type="viewpoint:DRepresentationContainer" xmi:id="_yXJz0HTpEeO7kd1RfsmAcw" initialized="true">
-    <ownedRepresentations xsi:type="viewpoint:DSemanticDiagram" xmi:id="_GwhFIHWkEeOHkLQMMBSUFQ" name="prueba">
+    <ownedRepresentations xsi:type="viewpoint:DSemanticDiagram" xmi:id="_GwhFIHWkEeOHkLQMMBSUFQ" name="VehicleTaxMTC">
       <ownedAnnotationEntries xmi:id="_GwhsMHWkEeOHkLQMMBSUFQ" source="GMF_DIAGRAMS">
         <data xsi:type="notation:Diagram" xmi:id="_GwhsMXWkEeOHkLQMMBSUFQ" type="Sirius" element="_GwhFIHWkEeOHkLQMMBSUFQ" measurementUnit="Pixel">
           <children xmi:id="_6WR0MNw8EeOB_f_216VUQg" type="2001" element="_6V5ZsNw8EeOB_f_216VUQg">

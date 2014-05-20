@@ -18,6 +18,14 @@ DSL {
 		   	Cilindraje : Real;		   	
 		   	Modelo : int;		   
 		   	"vigencia": List of Integer = {2010, 2011, 2012, 2013, 2014, 2015};	
+		   Linea: String;
+		   Modelo: List of Integer = {2010, 2011, 2012, 2013, 2014, 2015};
+		}
+
+		OperandosBase "rentas y deducciones" {
+			"Avaluo Comercial": Real;
+		   	Cilindraje : Real;		   		   
+		   	"Anio de vigencia": List of Integer = {2010, 2011, 2012, 2013, 2014, 2015};	
 		}
 
 		OperandosAdicionales {
@@ -33,12 +41,11 @@ DSL {
 	}
 
 	Contacto "Contribuyente" {
-	   apellidos : String;
-	   nombres: String;
-	   "Tipo de identificacion": List of String = {"CC", "TI", "PT", "CE"};
+	   Apellidos : String;
+	   Nombres: String;
+	   "Tipo de identificacion": String;
 	   "Numero de identificacion": String;
-	   calidad : List of String = {"propietario", "poseedor"};
-	   "Correo Electronico" : String;
+	   "Email" : String;
 	}
 	
 	Pago "Impuesto Anual" {
@@ -46,5 +53,6 @@ DSL {
 		"Valor Pagado": Real;
 		"Numero de identificacion": String;
 		"Anio de vigencia": int;		
+		"Numero de identificacion": String;	
 	}
 }

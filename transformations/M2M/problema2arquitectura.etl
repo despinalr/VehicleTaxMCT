@@ -285,7 +285,7 @@ operation IN!Entidad toEntity():OUT!Entity{
 		
 		entity.name = self.nombre;
 		
-		self.propiedades.select(x | x.isTypeOf(IN!AtributoSimple) or x.isTypeOf(IN!AtributoLista)).collect(x | entity.attributes.add(x.toAttribute()));
+		self.propiedades.select(x | x.isTypeOf(IN!AtributoSimple) or x.isKindOf(IN!AtributoLista)).collect(x | entity.attributes.add(x.toAttribute()));
 		
 		return entity;
 		
