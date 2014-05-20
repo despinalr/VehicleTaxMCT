@@ -16,16 +16,7 @@ DSL {
 		OperandosBase "rentas y deducciones" {
 			"Avaluo": Real;
 		   	Cilindraje : Real;		   	
-		   	Modelo : int;		   
 		   	"vigencia": List of Integer = {2010, 2011, 2012, 2013, 2014, 2015};	
-		   Linea: String;
-		   Modelo: List of Integer = {2010, 2011, 2012, 2013, 2014, 2015};
-		}
-
-		OperandosBase "rentas y deducciones" {
-			"Avaluo Comercial": Real;
-		   	Cilindraje : Real;		   		   
-		   	"Anio de vigencia": List of Integer = {2010, 2011, 2012, 2013, 2014, 2015};	
 		}
 
 		OperandosAdicionales {
@@ -43,7 +34,7 @@ DSL {
 	Contacto "Contribuyente" {
 	   Apellidos : String;
 	   Nombres: String;
-	   "Tipo de identificacion": String;
+	   "Tipo de identificacion": List of String = {'CC', 'CE', 'TI', 'RC'};
 	   "Numero de identificacion": String;
 	   "Email" : String;
 	}

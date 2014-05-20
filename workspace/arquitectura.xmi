@@ -21,17 +21,7 @@
       <graphicControls xsi:type="Arch:Div" name="OperandosBase">
         <graphicControls xsi:type="Arch:TextBox" name="Avaluo" type="number"/>
         <graphicControls xsi:type="Arch:TextBox" name="Cilindraje" type="number"/>
-        <graphicControls xsi:type="Arch:TextBox" name="Modelo" type="text"/>
         <graphicControls xsi:type="Arch:DropDownList" name="vigencia">
-          <items>2010</items>
-          <items>2011</items>
-          <items>2012</items>
-          <items>2013</items>
-          <items>2014</items>
-          <items>2015</items>
-        </graphicControls>
-        <graphicControls xsi:type="Arch:TextBox" name="Linea" type="text"/>
-        <graphicControls xsi:type="Arch:DropDownList" name="Modelo">
           <items>2010</items>
           <items>2011</items>
           <items>2012</items>
@@ -52,7 +42,12 @@
       <graphicControls xsi:type="Arch:Div" name="Contribuyente">
         <graphicControls xsi:type="Arch:TextBox" name="Apellidos" type="text"/>
         <graphicControls xsi:type="Arch:TextBox" name="Nombres" type="text"/>
-        <graphicControls xsi:type="Arch:TextBox" name="Tipo de identificacion" type="text"/>
+        <graphicControls xsi:type="Arch:DropDownList" name="Tipo de identificacion">
+          <items>CC</items>
+          <items>CE</items>
+          <items>TI</items>
+          <items>RC</items>
+        </graphicControls>
         <graphicControls xsi:type="Arch:TextBox" name="Numero de identificacion" type="text"/>
         <graphicControls xsi:type="Arch:TextBox" name="Email" type="text"/>
       </graphicControls>
