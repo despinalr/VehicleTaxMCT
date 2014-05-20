@@ -9,15 +9,13 @@ DSL {
 		Atributos {
 		   Marca : List of String = {"Chevrolet", "Renault", "Mazda", "Ford", "Audi", "BMW"};
 		   Uso: List of String = {"Particular", "Publico"};
-		   Modelo: Int;
 		   Linea: String;
-		   
+		   Modelo: List of Integer = {2010, 2011, 2012, 2013, 2014, 2015};
 		}
 
 		OperandosBase "rentas y deducciones" {
 			"Avaluo Comercial": Real;
-		   	Cilindraje : Real;		   	
-		   	Modelo : Int;		   
+		   	Cilindraje : Real;		   		   
 		   	"Anio de vigencia": List of Integer = {2010, 2011, 2012, 2013, 2014, 2015};	
 		}
 
@@ -34,18 +32,16 @@ DSL {
 	}
 
 	Contacto "Contribuyente" {
-	   apellidos : String;
-	   nombres: String;
-	   "Tipo de identificacion": List of String = {"CC", "TI", "PT", "CE"};
+	   Apellidos : String;
+	   Nombres: String;
+	   "Tipo de identificacion": String;
 	   "Numero de identificacion": String;
-	   calidad : List of String = {"propietario", "poseedor"};
-	   "Correo Electronico" : String;
+	   "Email" : String;
 	}
 	
 	Pago "Impuesto Anual" {
 		"Placa vehiculo": String;
 		"Valor Pagado": Real;
-		"Numero de identificacion": String;
-		"Anio de vigencia": Int;		
+		"Numero de identificacion": String;	
 	}
 }
