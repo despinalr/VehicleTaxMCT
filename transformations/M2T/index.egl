@@ -8,8 +8,12 @@
 		<link href='http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css' rel="stylesheet"></script>
     </head>
     <body>
-        <h1>Operaciones</h1>
-        <button id='actualizar'>Actualizar</button>
-        <button id='consultar'>Consultar</button>
+    	<div class="panel panel-info">
+            <div class="panel-heading">
+        		<h1>Operaciones</h1>
+        	</div>
+        	<button class="btn btn-success btn-md" id='actualizar'>Actualizar</button>
+        	<button class="btn btn-success btn-md" id='consultar'>Consultar</button>
+        </div>
     </body>
 </html>

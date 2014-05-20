@@ -11,7 +11,7 @@
 		<link href='http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css' rel="stylesheet"></script>
     </head>
     <body>
-        <div class="panel panel-primary">
+        <div class="panel panel-info">
             <div class="panel-heading">
             <h1>Datos del Vehiculo</h1>
 			</div>
@@ -50,8 +50,10 @@
             </table>
         </div>
         <br/><br/>
-        <div>
+        <div class="panel panel-info">
+            <div class="panel-heading">
             <h1>Contribuyente</h1>
+            </div>
             <br/>
             <table>
                 <tr>
@@ -85,8 +87,10 @@
             </table>
         </div>
         <br/>
-        <div>
+        <div class="panel panel-info">
+            <div class="panel-heading">
             <h1>Liquidacion</h1>
+            </div>
             <br/>
             <table border='1' id='liquidacion'>
                 <tr><td>Item</td><td>Valor</td></tr>
@@ -141,7 +145,7 @@
 	        		[%for(control in view.graphicControls) {%]
 	        			[% if(control.name == 'Formula aplicada') {%]
 	        				[%for(subcontrol in control.graphicControls) {%]
-	        					<h1>Formula: </h1><input type='text' id='formula' value='[%= subcontrol.text%]' size='100'>
+			<h1>Formula: </h1><input type='text' id='formula' value='[%= subcontrol.text%]' size='200' disabled>
 	        				[%}%]
 	        			[%}%]
 	        		[%}%]
