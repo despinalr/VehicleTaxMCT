@@ -9,26 +9,25 @@ DSL {
 		Atributos {
 		   Marca : List of String = {"Chevrolet", "Renault", "Mazda", "Ford", "Audi", "BMW"};
 		   Uso: List of String = {"Particular", "Publico"};
-		   Modelo: Int;
-		   Linea: String;
+		   Modelo: int;
 		   
 		}
 
 		OperandosBase "rentas y deducciones" {
-			"Avaluo Comercial": Real;
+			"Avaluo": Real;
 		   	Cilindraje : Real;		   	
-		   	Modelo : Int;		   
-		   	"Anio de vigencia": List of Integer = {2010, 2011, 2012, 2013, 2014, 2015};	
+		   	Modelo : int;		   
+		   	"vigencia": List of Integer = {2010, 2011, 2012, 2013, 2014, 2015};	
 		}
 
 		OperandosAdicionales {
 		  Semaforizacion : Real = 50000;
-		  "Descuento pronto pago" : Real = 0.1;
+		  "Descuento" : Real = 0.1;
 		}
 
 
 		Formula {
-		  valorPagar = ("Avaluo Comercial" * (Cilindraje / 1000 / 100)) * (1 - "Descuento pronto pago") * (1 - ("Anio de vigencia" - Modelo)/100);
+		  valorPagar = ("Avaluo" * (Cilindraje / 1000 / 100)) * (1 - "Descuento") * (1 - ("vigencia" - Modelo)/100);
 		}
 
 	}
@@ -46,6 +45,6 @@ DSL {
 		"Placa vehiculo": String;
 		"Valor Pagado": Real;
 		"Numero de identificacion": String;
-		"Anio de vigencia": Int;		
+		"Anio de vigencia": int;		
 	}
 }
